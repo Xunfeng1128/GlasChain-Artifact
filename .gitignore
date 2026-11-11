@@ -1,0 +1,24 @@
+# Local builds, runtime logs, caches and extracted data.
+/runs/
+/results/
+/bin/
+/data/work/
+/.experiment_runner/
+/.work/
+/datasets/icde_e2_1000001_4000000/*
+!/datasets/icde_e2_1000001_4000000/selection.json
+**/expTest/
+**/database/
+*.log
+*.py[cod]
+__pycache__/
+.DS_Store
+.venv/
+.idea/
+.vscode/
+.ipynb_checkpoints/
+.jupyter_runtime/
+.env
+.env.*
+*.pem
+*.key

@@ -1,0 +1,208 @@
+{
+  "analysis_sources": "historical-analysis/handoff/analysis_sources.json",
+  "analysis_sources_sha256": "a4b4978350f980322bc13c8e83a84417a38e45583107419dff9d0a3969283ddd",
+  "transfer_manifest": "historical-analysis/provenance/e4_transfer_manifest_20261109_v1.json",
+  "transfer_manifest_sha256": "f2e6e13435d5348f227523c414dfc6eab721d05a5167d50f30ac386f15e9fd98",
+  "figure_data_sha256": "f2524029db93ebe6c771c00e5eb1648761096c2a471ab55e5ebcbf3473be8ff0",
+  "runs_checked": 16,
+  "independent_runs_per_method_per_setting": 1,
+  "completed_transactions_per_run": 500000,
+  "completed_sources_sha256": "82319e18986fdc505809e30df618edffaa81788d69cd8e1c72c4526bdd811b0e",
+  "common_base_gas": 37054303776,
+  "checks": [
+    "all E4 source tables and validations matched the transfer manifest",
+    "formal run IDs, methods, conditions and original event hashes matched the E3 manifest",
+    "all runs completed the same cohort with the same base Gas",
+    "per-shard execution Gas summed to system execution Gas",
+    "relay1_base_gas + attached_gas == extra_execution_gas == total_execution_gas - base_gas",
+    "executed the notebook using the glas-analysis Jupyter kernel",
+    "verified all 32 segment heights, baselines, method colors and hatches",
+    "SciPilot layout audit and visual review passed",
+    "verified vector SVG, PDF embedded Times New Roman, and PNG 4296 by 1890 at 600 dpi"
+  ],
+  "figure": {
+    "size_inches": [
+      7.16,
+      3.15
+    ],
+    "png_dpi": 600,
+    "gas_units_per_axis_unit": 1000000000,
+    "method_order": [
+      "glas",
+      "clpa",
+      "plouvain",
+      "hash"
+    ],
+    "stack_order_bottom_to_top": [
+      "relay1_base_gas",
+      "attached_gas"
+    ],
+    "outputs_sha256": {
+      "e3_d_extra_execution_gas.pdf": "858c3a496d32215db0a7709925d4c60d8d41d6442f9a60950bf1cde61daf8490",
+      "e3_d_extra_execution_gas.svg": "abb1611d77b9a6271ce96b5b0551671f0bdab73dc5b73d83fb349f31b74de123",
+      "e3_d_extra_execution_gas.png": "58fd87051ae4351f894563123fc63a2608db80e62f2762948218f3afe8968c03"
+    }
+  },
+  "runs": {
+    "e3_hash_s8_r1000_n500000_r01": {
+      "formal_run_directory": "formal-archive/e3/hash/e3_hash_s8_r1000_n500000/r01",
+      "local_source_directory": "historical-analysis/data/e4/e3_hash_s8_r1000_n500000",
+      "original_event_sha256": "4a58e20ab6750a5beaa519ddbc7a56722060ea6f469692c6e9e2e6a49b2f24da",
+      "files_sha256": {
+        "shard_workloads.csv": "e0be01dc18d02bcc1fee672bf0ba448157f06a544be0d473f6b09c8e3e5ebb6e",
+        "system_workload.csv": "b96ba93d65ebb21419002e913648f2b1f9326800656ccd62ce1c1c1116159073",
+        "validation.json": "4f1f7a94e3f7945fda552b90abd692269fa2d34df5d5a35806d68d8079e66012"
+      }
+    },
+    "e3_clpa_s8_r1000_n500000_r01": {
+      "formal_run_directory": "formal-archive/e3/clpa/e3_clpa_s8_r1000_n500000/r01",
+      "local_source_directory": "historical-analysis/data/e4/e3_clpa_s8_r1000_n500000",
+      "original_event_sha256": "171cbb2f6adb2f38ab0633264d899c1a3b5fccbb663ffd879ed8b195bcf4f0f2",
+      "files_sha256": {
+        "shard_workloads.csv": "c0fb886a72ed02164a27a56b1d360ff3b9db1b222a7538aff7e9efb4540f4252",
+        "system_workload.csv": "74a08ec690ed54d5c6145aac703cf585a239321ad49bd81d311c25af33f9e462",
+        "validation.json": "a28effe51dd196d12ee44bf071b095bf8c2968a89e7f1fd6934da33b1070c4d7"
+      }
+    },
+    "e3_plouvain_s8_r1000_n500000_r01": {
+      "formal_run_directory": "formal-archive/e3/plouvain/e3_plouvain_s8_r1000_n500000/r01",
+      "local_source_directory": "historical-analysis/data/e4/e3_plouvain_s8_r1000_n500000",
+      "original_event_sha256": "787abe97693dd3e11dd20d7c59bdae42656c349cc64347ffc9725fa4f6be779b",
+      "files_sha256": {
+        "shard_workloads.csv": "b8dd8ebb2a0158a3708389b3acc925523b0c84977304f76ff5d942d531ac33f8",
+        "system_workload.csv": "af875f0b79e4b24fdf5aad3a6542a2a0ee11308c0abec52dbb70379f7a07d39b",
+        "validation.json": "3de854724cb85ab774f0366d6bbe0d39d6412d170009e062644e79cf56a2dbfe"
+      }
+    },
+    "e3_glas13_s8_r1000_n500000_r01": {
+      "formal_run_directory": "formal-archive/e3/glas/e3_glas13_s8_r1000_n500000/r01",
+      "local_source_directory": "historical-analysis/data/e4/e3_glas13_s8_r1000_n500000",
+      "original_event_sha256": "05c979783dc63edaeac7deee2ca09c3587f92e3260a18a77067235996095c42b",
+      "files_sha256": {
+        "shard_workloads.csv": "b2404e62ce34cdff562c088b3c65323fe852edafc617555ee7556342df3bbb22",
+        "system_workload.csv": "678be258746f29f3ef56e12449c438cd0029a75bea471bb3696433892e08e8d5",
+        "validation.json": "e4b6bedf43d6d4bc81ca98613b8a2c13666920fd2495dcacae2ec4a192275291"
+      }
+    },
+    "e3_hash_s8_r2000_n500000_r01": {
+      "formal_run_directory": "formal-archive/e3/hash/e3_hash_s8_r2000_n500000/r01",
+      "local_source_directory": "historical-analysis/data/e4/e3_hash_s8_r2000_n500000",
+      "original_event_sha256": "c292b9f2b1538f64cde89d544db9e3d6f48a1b8a99aa68508053edee6f210de5",
+      "files_sha256": {
+        "shard_workloads.csv": "e0be01dc18d02bcc1fee672bf0ba448157f06a544be0d473f6b09c8e3e5ebb6e",
+        "system_workload.csv": "d0cfae875318d590c38c7dabdab966a54ec1869fb19e4c4ed1effa8c4ea74067",
+        "validation.json": "afba248c559d3ab275981f9cf34fadd3c8fc4072b9599c2e733d8419bea6d98d"
+      }
+    },
+    "e3_clpa_s8_r2000_n500000_r01": {
+      "formal_run_directory": "formal-archive/e3/clpa/e3_clpa_s8_r2000_n500000/r01",
+      "local_source_directory": "historical-analysis/data/e4/e3_clpa_s8_r2000_n500000",
+      "original_event_sha256": "350f7ac6ee13162e13e00f80978d4c3d11a4c13ee1ce70fcaac2950706b66e7e",
+      "files_sha256": {
+        "shard_workloads.csv": "2e0264e6873b1bfd721aac9e21e4bcd44f1d04a6ae42a4ecc4906cf619992b35",
+        "system_workload.csv": "c58a064aa6097585474ce437e881e327494956b63ba78d48fe1daadd3682b31f",
+        "validation.json": "3d200fd7b0da3eda2f1764ccb6bc5b9dfae566500d91c22536f8eb2926364f0a"
+      }
+    },
+    "e3_plouvain_s8_r2000_n500000_r01": {
+      "formal_run_directory": "formal-archive/e3/plouvain/e3_plouvain_s8_r2000_n500000/r01",
+      "local_source_directory": "historical-analysis/data/e4/e3_plouvain_s8_r2000_n500000",
+      "original_event_sha256": "acfcf75979ce003c7d81f442c5f4587a1f427707fd7630a1d585d645e1fc9ddf",
+      "files_sha256": {
+        "shard_workloads.csv": "92b61bd431f73c02f038924c893e0e64381ed18c25fb9ad6e04bfe2df8d3a1fc",
+        "system_workload.csv": "5afb6b03f89067587eeb39a7ffc0d0bdbfded5695e4a506979994136518cb8eb",
+        "validation.json": "f13d30dbdc3a393a196d3f373071a611f07c9968a9c0b2ea8ac28a2222ada899"
+      }
+    },
+    "e3_glas13_s8_r2000_n500000_r01": {
+      "formal_run_directory": "formal-archive/e3/glas/e3_glas13_s8_r2000_n500000/r01",
+      "local_source_directory": "historical-analysis/data/e4/e3_glas13_s8_r2000_n500000",
+      "original_event_sha256": "660548fc17bd22a4d26e30ba93455220f6a2ffc79b2bd662f6c6b227298e2f4a",
+      "files_sha256": {
+        "shard_workloads.csv": "e1121babc8364c35f7dc704f32cb5532106f58fcccf60d13ea0f1ab0dc4789c6",
+        "system_workload.csv": "bef48b3975c279d0e572cd42b3fbf9e45da59483e2e11d8b463598ae1522d3a7",
+        "validation.json": "250d84972a5a7bd639a8235a23c17a594aa11694fa22384f1635064dc03e4194"
+      }
+    },
+    "e3_hash_s16_r1000_n500000_r01": {
+      "formal_run_directory": "formal-archive/e3/hash/e3_hash_s16_r1000_n500000/r01",
+      "local_source_directory": "historical-analysis/data/e4/e3_hash_s16_r1000_n500000",
+      "original_event_sha256": "f8e11699057ef953a2c2f157b8e59b156477d3306bbccd815db23b6b84626319",
+      "files_sha256": {
+        "shard_workloads.csv": "a21bfa3b0004506068a7195a414bfe5a511c4517a5148c83ab92c3ac2231b24e",
+        "system_workload.csv": "dedf608077991644dfc5d440acbaa23a1ff9171ae5c7d13fb6a3746149c6f170",
+        "validation.json": "52dabccba13975a5550995187215bf3509027a48ee36092ceb0a13cd1dba3828"
+      }
+    },
+    "e3_clpa_s16_r1000_n500000_r01": {
+      "formal_run_directory": "formal-archive/e3/clpa/e3_clpa_s16_r1000_n500000/r01",
+      "local_source_directory": "historical-analysis/data/e4/e3_clpa_s16_r1000_n500000",
+      "original_event_sha256": "d9dc667c4b9859a68a4b78f3b90b3920214d44df659bd388f056aeefe2f9f59b",
+      "files_sha256": {
+        "shard_workloads.csv": "47d2e7fd43eb34c45e8bf02538aac206fd86b7159a82e67930c843d073562bd7",
+        "system_workload.csv": "5c52551b8d6b99fe160240c1d2b3421131d6e218409dde8b94ea3a3b56d3e786",
+        "validation.json": "29c9f6adf91661c58d8e656cedba8b4248cb9380b4ea0775025eda60d5b850a6"
+      }
+    },
+    "e3_plouvain_s16_r1000_n500000_r01": {
+      "formal_run_directory": "formal-archive/e3/plouvain/e3_plouvain_s16_r1000_n500000/r01",
+      "local_source_directory": "historical-analysis/data/e4/e3_plouvain_s16_r1000_n500000",
+      "original_event_sha256": "dd2ffa17a4a2a7e7c199fbc18be100ec2b6700c23ee30a9f8e2e13ea848000bf",
+      "files_sha256": {
+        "shard_workloads.csv": "51cfa8e728a99b2ccd75119d7f942ba997b2facc794753a6289375900dbc0a6b",
+        "system_workload.csv": "dfd3dc9b08bdebbd72e9ac98164434d5a89e629c20c07d706ec6598b9b4ca534",
+        "validation.json": "8413f9d4ea5d9e469c07645dfab16fefbd539d4e56f9d48bcd27325094896b2e"
+      }
+    },
+    "e3_glas13_s16_r1000_n500000_r01": {
+      "formal_run_directory": "formal-archive/e3/glas/e3_glas13_s16_r1000_n500000/r01",
+      "local_source_directory": "historical-analysis/data/e4/e3_glas13_s16_r1000_n500000",
+      "original_event_sha256": "bead552ee6ecfaf957d7dc2e6d6b434218c1a2a6eb762e5d0a55837c0f64309f",
+      "files_sha256": {
+        "shard_workloads.csv": "87955e5c7258db174ef6db35991fc5b0b7f102828e36514921b17a841f511621",
+        "system_workload.csv": "4349db2396deaf713b2b68cc31c534f4f6a71a40e8e48a25f8f63f9207540c72",
+        "validation.json": "5420978cc9b3c7afa46fe19f0b88527a834e961e123d69c1aba10d5b4d2811ef"
+      }
+    },
+    "e3_hash_s16_r2000_n500000_r01": {
+      "formal_run_directory": "formal-archive/e3/hash/e3_hash_s16_r2000_n500000/r01",
+      "local_source_directory": "historical-analysis/data/e4/e3_hash_s16_r2000_n500000",
+      "original_event_sha256": "562904deb01b7738cff4b51e16d154efa400fb2bfba3918a2fe84623ed9f6353",
+      "files_sha256": {
+        "shard_workloads.csv": "a21bfa3b0004506068a7195a414bfe5a511c4517a5148c83ab92c3ac2231b24e",
+        "system_workload.csv": "69c82a252fb43a4ccfe2793d55b81206e8ae58f37066d55adc0ecd9af647af2c",
+        "validation.json": "09f980dbb91daa2ed556f41fb8106bdfa47772967eb1247c1efba36813bccd07"
+      }
+    },
+    "e3_clpa_s16_r2000_n500000_r01": {
+      "formal_run_directory": "formal-archive/e3/clpa/e3_clpa_s16_r2000_n500000/r01",
+      "local_source_directory": "historical-analysis/data/e4/e3_clpa_s16_r2000_n500000",
+      "original_event_sha256": "78eb88c5ba1648a4b0ba0d3d509815b0de11b1d1fe273d1d311167cffd26437e",
+      "files_sha256": {
+        "shard_workloads.csv": "9cc41c9db5cfcd8286016ca1a111667596804156c6ef468cb8cd2e854c946991",
+        "system_workload.csv": "5335ae1be81522ea1f8c68bf1f1af53817a844f547ffd4cb46cd8a3a9078808b",
+        "validation.json": "6295644b3edb30bbfe77223593f3e2aaa6778be944fe0e895eaad29a5db9157a"
+      }
+    },
+    "e3_plouvain_s16_r2000_n500000_r01": {
+      "formal_run_directory": "formal-archive/e3/plouvain/e3_plouvain_s16_r2000_n500000/r01",
+      "local_source_directory": "historical-analysis/data/e4/e3_plouvain_s16_r2000_n500000",
+      "original_event_sha256": "6e6f510084812f22b0543c1e4fb30584f6178f30abe57e9c47099e279e99dfbf",
+      "files_sha256": {
+        "shard_workloads.csv": "a9cff6d103db9b55da30b31b2b4faa8290c64d77814dfd45062f0960e0a18661",
+        "system_workload.csv": "fbc7d073d2279be5875c49c5986347effd837a618f856f3f38b51f59680a1cc4",
+        "validation.json": "3ed656c4f25a24f169899b4608b6585199566dfa97423d08a4e9e2229ca52bff"
+      }
+    },
+    "e3_glas13_s16_r2000_n500000_r01": {
+      "formal_run_directory": "formal-archive/e3/glas/e3_glas13_s16_r2000_n500000/r01",
+      "local_source_directory": "historical-analysis/data/e4/e3_glas13_s16_r2000_n500000",
+      "original_event_sha256": "4a060a9052fc98dcea605aaf83cf453648ad72e1bf76bde6a946aeeb4f0ef7f5",
+      "files_sha256": {
+        "shard_workloads.csv": "7fd0bc087764888b3b7157e16bae38b85e4197562801157eea2633009b97ef1d",
+        "system_workload.csv": "13bbb9d98459f0de04baf7ba2af0282d5fed90572f109f924ce3f361885c0a22",
+        "validation.json": "112be6a234a531b65a59d94ce3792bb0521a34113afb64e0a9b5e6ba4aedb107"
+      }
+    }
+  }
+}

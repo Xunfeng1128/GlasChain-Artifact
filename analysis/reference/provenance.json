@@ -1,0 +1,280 @@
+{
+  "figures": {
+    "e1": {
+      "manuscript_filename": "fig_e1_allocation.pdf",
+      "manuscript_pdf_sha256": "65637d11285ddbe25df3815864d92bc4c049db33af8d061b710c177c47711c23",
+      "historical_composed_pdf_sha256": "230a78cc7e97195e34ca607ea8b27bf0dfcced92626dc3a7159b65c9a000607e",
+      "panels": [
+        {
+          "source_notebook": "e1/e1_a_epoch_block_span_tps_s8.ipynb",
+          "legend_caption": "TPS, K=8",
+          "historical_panel_pdf_sha256": "269c6a75384a9153b0f6a5444f752af11c00c6917d29887e40e6012d9aaad3e3",
+          "recorded_panel_pdf_sha256": "269c6a75384a9153b0f6a5444f752af11c00c6917d29887e40e6012d9aaad3e3"
+        },
+        {
+          "source_notebook": "e1/e1_b_epoch_block_span_tps_s16.ipynb",
+          "legend_caption": "TPS, K=16",
+          "historical_panel_pdf_sha256": "d26a310c50644d099082a32bf04eb82fe1150b1e936225a888e87af3974bed15",
+          "recorded_panel_pdf_sha256": "d26a310c50644d099082a32bf04eb82fe1150b1e936225a888e87af3974bed15"
+        },
+        {
+          "source_notebook": "e1/e1_c_cross_shard_ratio_s8.ipynb",
+          "legend_caption": "Cross-shard TX Ratio, K=8",
+          "historical_panel_pdf_sha256": "f5f3a8aee0584a38a805ecc1082aca21ec20fa6d9b03b84489ab16361af7a00f",
+          "recorded_panel_pdf_sha256": "f5f3a8aee0584a38a805ecc1082aca21ec20fa6d9b03b84489ab16361af7a00f"
+        },
+        {
+          "source_notebook": "e1/e1_d_cross_shard_ratio_s16.ipynb",
+          "legend_caption": "Cross-shard TX Ratio, K=16",
+          "historical_panel_pdf_sha256": "42b09f965d1e417ed41ff2c4ee4a76e7304827362546c5244febbe8fb2ff11e1",
+          "recorded_panel_pdf_sha256": "42b09f965d1e417ed41ff2c4ee4a76e7304827362546c5244febbe8fb2ff11e1"
+        }
+      ]
+    },
+    "e2": {
+      "manuscript_filename": "fig_e2_end_to_end.pdf",
+      "manuscript_pdf_sha256": "082871c8ca780a5dbe84870a4584f678ada51279ee4718d5594453de076babdf",
+      "historical_composed_pdf_sha256": "451c6b154eabed6a5ef07ba42be7e7827f1553209a0109d44999cf1c41cf06a0",
+      "panels": [
+        {
+          "source_notebook": "e2/e2_a_tps.ipynb",
+          "legend_caption": "Throughput",
+          "historical_panel_pdf_sha256": "6d8216df7ef865c734c4f19ffe7df11357d5bcc4d550a2715f9e3dada950aec7",
+          "recorded_panel_pdf_sha256": "6d8216df7ef865c734c4f19ffe7df11357d5bcc4d550a2715f9e3dada950aec7"
+        },
+        {
+          "source_notebook": "e2/e2_b_confirmation_rate.ipynb",
+          "legend_caption": "Confirmation Rate",
+          "historical_panel_pdf_sha256": "42e0fa730338f77266d95d24c50a342ff9d2c5b225b0fbcd2c429501b986f315",
+          "recorded_panel_pdf_sha256": "42e0fa730338f77266d95d24c50a342ff9d2c5b225b0fbcd2c429501b986f315"
+        },
+        {
+          "source_notebook": "e2/e2_c_mean_latency.ipynb",
+          "legend_caption": "Mean Confirmation Latency",
+          "historical_panel_pdf_sha256": "14b6a01478feec7ed6bada8f94f294edf4b080e35133c117cf635a60b2cad143",
+          "recorded_panel_pdf_sha256": "14b6a01478feec7ed6bada8f94f294edf4b080e35133c117cf635a60b2cad143"
+        },
+        {
+          "source_notebook": "e2/e2_d_p95_latency.ipynb",
+          "legend_caption": "P95 Confirmation Latency",
+          "historical_panel_pdf_sha256": "e67da16c898b6909c9b4faf3e521be5852571f5a019f3e4d912827febf45e40f",
+          "recorded_panel_pdf_sha256": "e67da16c898b6909c9b4faf3e521be5852571f5a019f3e4d912827febf45e40f"
+        }
+      ]
+    },
+    "e3": {
+      "manuscript_filename": "fig_e3_cross_shard_and_gas.pdf",
+      "manuscript_pdf_sha256": "25255bcbce967c340a412bf8a9ffbe3e249868dec8f8c167905d6424d255b4b4",
+      "historical_composed_pdf_sha256": "66bb5ee2967d7bf968f83f1c87cc8dfcd7e30b11351795d4f956ad6155643ad7",
+      "panels": [
+        {
+          "source_notebook": "e3/e3_a_total_cross_shard_ratio.ipynb",
+          "legend_caption": "Cross-shard TX Ratio",
+          "historical_panel_pdf_sha256": "81a3a3e2f171afb302e33205ebaa82248946defc5a8befd931a719e29e976c76",
+          "recorded_panel_pdf_sha256": "81a3a3e2f171afb302e33205ebaa82248946defc5a8befd931a719e29e976c76"
+        },
+        {
+          "source_notebook": "e3/e3_b_cross_shard_composition.ipynb",
+          "legend_caption": "Cross-shard TX Composition",
+          "historical_panel_pdf_sha256": "f02a1cb8486876607a1f1ffc4cf8e4730843b16c580cd3aad2c5ad7d8b68126b",
+          "recorded_panel_pdf_sha256": "f02a1cb8486876607a1f1ffc4cf8e4730843b16c580cd3aad2c5ad7d8b68126b"
+        },
+        {
+          "source_notebook": "e3/e3_c_gas_weighted_cross_shard_ratio.ipynb",
+          "legend_caption": "Gas-weighted Cross-shard TX Ratio",
+          "historical_panel_pdf_sha256": "ec215d23412fffd4b7b6e0b775c41ff8aa0266c99f0cf328c94fe0ecfe34be90",
+          "recorded_panel_pdf_sha256": "ec215d23412fffd4b7b6e0b775c41ff8aa0266c99f0cf328c94fe0ecfe34be90"
+        },
+        {
+          "source_notebook": "e3/e3_d_extra_execution_gas.ipynb",
+          "legend_caption": "Extra Execution Gas",
+          "historical_panel_pdf_sha256": "12829738e5cedf053981f44e739a34b5f30f4e8eb7d2dd441407af3da667a6c7",
+          "recorded_panel_pdf_sha256": "12829738e5cedf053981f44e739a34b5f30f4e8eb7d2dd441407af3da667a6c7"
+        }
+      ]
+    },
+    "e4": {
+      "manuscript_filename": "fig_e4_backlog_and_drain.pdf",
+      "manuscript_pdf_sha256": "343e51618fa6f99a09739e6673d173c7aa99369ca6c7308b6f1175f6f1e3d6eb",
+      "historical_composed_pdf_sha256": "9fdca3cc7abb115173ea3e3b2cd26f11ee19767b05cf78179b529a42dc1e04fa",
+      "panels": [
+        {
+          "source_notebook": "e4/e4_a_backlog_drain_s8_r1000.ipynb",
+          "legend_caption": "K=8, 1,000 tx/s",
+          "historical_panel_pdf_sha256": "d585bbbfdf6d47ed5c5c7d984cc3213c98df7f79dc184f75aebfafa40a0c7122",
+          "recorded_panel_pdf_sha256": "d585bbbfdf6d47ed5c5c7d984cc3213c98df7f79dc184f75aebfafa40a0c7122"
+        },
+        {
+          "source_notebook": "e4/e4_b_backlog_drain_s8_r2000.ipynb",
+          "legend_caption": "K=8, 2,000 tx/s",
+          "historical_panel_pdf_sha256": "cd9417e9279073567bb02796b40aa753bc7e466f54d9b3b2cc99fc33acaaad74",
+          "recorded_panel_pdf_sha256": "cd9417e9279073567bb02796b40aa753bc7e466f54d9b3b2cc99fc33acaaad74"
+        },
+        {
+          "source_notebook": "e4/e4_c_backlog_drain_s16_r1000.ipynb",
+          "legend_caption": "K=16, 1,000 tx/s",
+          "historical_panel_pdf_sha256": "2124699324229c9fd0e2a281090ae8dde4c2a1a1973d431417e5abc6bc24b149",
+          "recorded_panel_pdf_sha256": "2124699324229c9fd0e2a281090ae8dde4c2a1a1973d431417e5abc6bc24b149"
+        },
+        {
+          "source_notebook": "e4/e4_d_backlog_drain_s16_r2000.ipynb",
+          "legend_caption": "K=16, 2,000 tx/s",
+          "historical_panel_pdf_sha256": "54793ee4bbbb60e9d0de71e4ef7950b762db3cfb3157be8361f3f69886c2976f",
+          "recorded_panel_pdf_sha256": "54793ee4bbbb60e9d0de71e4ef7950b762db3cfb3157be8361f3f69886c2976f"
+        }
+      ]
+    },
+    "e5": {
+      "manuscript_filename": "fig_e5_shard_gas.pdf",
+      "manuscript_pdf_sha256": "13a37776faac4388478280374a83887ebc64773428351b536bb9e5425e5c5bd4",
+      "historical_composed_pdf_sha256": "929dbaca38ef1d564401e534fee8097b9322cacd39a1f8e6be7521bb7a30f68c",
+      "panels": [
+        {
+          "source_notebook": "e5/e5_a_shard_gas_distribution.ipynb",
+          "legend_caption": "Per-shard Load Distribution",
+          "historical_panel_pdf_sha256": "a093f9de5129cadbf5ea5b85356e1c2bf18d5b6806b3f9bbaa63b83c7bfdd8e6",
+          "recorded_panel_pdf_sha256": "a093f9de5129cadbf5ea5b85356e1c2bf18d5b6806b3f9bbaa63b83c7bfdd8e6"
+        },
+        {
+          "source_notebook": "e5/e5_b_max_shard_execution_gas.ipynb",
+          "legend_caption": "Max. Shard Load",
+          "historical_panel_pdf_sha256": "a75506527d4d9f3f89e41f61cdb70df0b3c0727c5beaafee1ebe5d37f1fa0637",
+          "recorded_panel_pdf_sha256": "a75506527d4d9f3f89e41f61cdb70df0b3c0727c5beaafee1ebe5d37f1fa0637"
+        },
+        {
+          "source_notebook": "e5/e5_c_base_gas_cv.ipynb",
+          "legend_caption": "Base Gas CV",
+          "historical_panel_pdf_sha256": "5e41ab23cd294c2d7722f43a7c69df07963e77fd8c449c9b9bc7bb3a3e0275ec",
+          "recorded_panel_pdf_sha256": "5e41ab23cd294c2d7722f43a7c69df07963e77fd8c449c9b9bc7bb3a3e0275ec"
+        },
+        {
+          "source_notebook": "e5/e5_d_max_shard_extra_gas.ipynb",
+          "legend_caption": "Max. Extra Gas per Shard",
+          "historical_panel_pdf_sha256": "889309b2545025e2565f21b10efb0d60689a620ae7d4303f9b959362b65f9f2e",
+          "recorded_panel_pdf_sha256": "889309b2545025e2565f21b10efb0d60689a620ae7d4303f9b959362b65f9f2e"
+        }
+      ]
+    },
+    "e6": {
+      "manuscript_filename": "fig_e6_shard_completion.pdf",
+      "manuscript_pdf_sha256": "b72e732709788d2e9b5a3e3188a7164ecbf9a211a7dafe59e44e2eefc79f50ce",
+      "historical_composed_pdf_sha256": "976d9db7832bbec7c18f2eb619d00c5dfc55ebd71016bf3e1be2dbf28f4fde14",
+      "panels": [
+        {
+          "source_notebook": "e6/e6_a_shard_completion_time_s8_r1000.ipynb",
+          "legend_caption": "K=8, 1,000 tx/s",
+          "historical_panel_pdf_sha256": "53927d42e67185c9930568efac7c1f7fe8903acb0afa5a7cfd29268a2c68c49e",
+          "recorded_panel_pdf_sha256": "53927d42e67185c9930568efac7c1f7fe8903acb0afa5a7cfd29268a2c68c49e"
+        },
+        {
+          "source_notebook": "e6/e6_b_shard_completion_time_s8_r2000.ipynb",
+          "legend_caption": "K=8, 2,000 tx/s",
+          "historical_panel_pdf_sha256": "efaf6f8f8ade5820a87197c98abf188fbae003999fb05da26bac31d7b3153e49",
+          "recorded_panel_pdf_sha256": "efaf6f8f8ade5820a87197c98abf188fbae003999fb05da26bac31d7b3153e49"
+        },
+        {
+          "source_notebook": "e6/e6_c_shard_completion_time_s16_r1000.ipynb",
+          "legend_caption": "K=16, 1,000 tx/s",
+          "historical_panel_pdf_sha256": "6415a1a824dad0db468ffcb78d5c516c7854bc4590921f213bfd303434f479bb",
+          "recorded_panel_pdf_sha256": "6415a1a824dad0db468ffcb78d5c516c7854bc4590921f213bfd303434f479bb"
+        },
+        {
+          "source_notebook": "e6/e6_d_shard_completion_time_s16_r2000.ipynb",
+          "legend_caption": "K=16, 2,000 tx/s",
+          "historical_panel_pdf_sha256": "9d54c8baf97766fb2e031e0ddd83beefe916258a0a7ae73382cf35c4f99010af",
+          "recorded_panel_pdf_sha256": "9d54c8baf97766fb2e031e0ddd83beefe916258a0a7ae73382cf35c4f99010af"
+        }
+      ]
+    }
+  },
+  "tables": {
+    "e1/e1_statistics/observed_run_summary.csv": {
+      "historical_sha256": "3fafaf921664e0091fbbb01920fc4d0cca4421f62a1e3e4da01401ec7e253779",
+      "distributed_sha256": "3fafaf921664e0091fbbb01920fc4d0cca4421f62a1e3e4da01401ec7e253779"
+    },
+    "e1/e1_statistics/epoch_block_span_tps.csv": {
+      "historical_sha256": "ceadae8a1bd626690239f195e15ef80e74084dfa6823e867304a4ce9aeb33838",
+      "distributed_sha256": "ceadae8a1bd626690239f195e15ef80e74084dfa6823e867304a4ce9aeb33838"
+    },
+    "e1/e1_statistics/max_shard_processing_time.csv": {
+      "historical_sha256": "365f1d7f01860de2d7aa81c0e7f8c6eaf7be6b454703d94cb1b821a368fbdcf8",
+      "distributed_sha256": "19a1f29e93da4078052612a041ab22b49ee320d6945287bacc757f58939c428a"
+    },
+    "e2/e2_overview/figure_data.csv": {
+      "historical_sha256": "cd28803d30f20f2d95fcceb5952f77f5eddbaeabbd6bdbbe91c19146f289d06d",
+      "distributed_sha256": "cd28803d30f20f2d95fcceb5952f77f5eddbaeabbd6bdbbe91c19146f289d06d"
+    },
+    "e2/e2_overview/validation.json": {
+      "historical_sha256": "608ebadfb582a03c932ba7de38b3b0793332bb660b2ab70280722d2d6d817367",
+      "distributed_sha256": "1f96f6fafc021e9a1c2607162ee672c92137250a0f11f06aa1aea2564dd79ba4"
+    },
+    "e4/e4_backlog_drain/figure_data.csv": {
+      "historical_sha256": "79bc14c99bd4f64e693faefbf102dacd6c13478f69e202a7f0c5db7bff368cd2",
+      "distributed_sha256": "79bc14c99bd4f64e693faefbf102dacd6c13478f69e202a7f0c5db7bff368cd2"
+    },
+    "e4/e4_backlog_drain/peak_and_drain.csv": {
+      "historical_sha256": "e8b7fac3d7d8cd0f745ddb2b275cafff2ee33f9f5728e17e0d66773f22e1f9fd",
+      "distributed_sha256": "e8b7fac3d7d8cd0f745ddb2b275cafff2ee33f9f5728e17e0d66773f22e1f9fd"
+    },
+    "e4/e4_backlog_drain/validation.json": {
+      "historical_sha256": "c988541b45d2adacc5793e0e4199510289187a734bed674646d0d33785f840e9",
+      "distributed_sha256": "2779f8fea53cde2620f1520720d628d87d1a2ebdbf9f53ee058c2fdde4bd82fb"
+    },
+    "e5/e5_a_shard_gas_distribution/figure_data.csv": {
+      "historical_sha256": "af3160de2b9b8ce526826f05ccdb0ca09950d3d92f36d062b66e488c92bacc5a",
+      "distributed_sha256": "af3160de2b9b8ce526826f05ccdb0ca09950d3d92f36d062b66e488c92bacc5a"
+    },
+    "e5/e5_a_shard_gas_distribution/validation.json": {
+      "historical_sha256": "a19670166089d8f251b75828734a7505c2a8aa30b02190c42c5911e37d3ef81b",
+      "distributed_sha256": "9940c3e34527aaeb8599c02531c9c577148e4b2782f7c7be682ffbe739bebd6f"
+    },
+    "e5/e5_b_max_shard_execution_gas/figure_data.csv": {
+      "historical_sha256": "3eb4ab8090ae1f36fe9fb31bd24f935fe708c0871d127df4b477df5975c5278b",
+      "distributed_sha256": "3eb4ab8090ae1f36fe9fb31bd24f935fe708c0871d127df4b477df5975c5278b"
+    },
+    "e5/e5_b_max_shard_execution_gas/validation.json": {
+      "historical_sha256": "8c71aac2cb35f7f2eef7ff2ad15d0671ec1b1ca46b95aad24717c6ab8e87622b",
+      "distributed_sha256": "1db0406fbc5a3a6b7282bdc0a522865442b856f730f3e41a440309c322d84d0b"
+    },
+    "e6/e6_shard_completion_time/figure_data.csv": {
+      "historical_sha256": "e850db849b77ab2bca119b932d94f082bdea3fbc8f0146eb8c539caeee6933e8",
+      "distributed_sha256": "e850db849b77ab2bca119b932d94f082bdea3fbc8f0146eb8c539caeee6933e8"
+    },
+    "e6/e6_shard_completion_time/source_validation.json": {
+      "historical_sha256": "2a673e8f4a55802d132ae9be3db1aeeb1298bb438163cb57ed4b9a8978bb7493",
+      "distributed_sha256": "714a3cc53e1c574a3acd84e0133333fb90fbda50a056aae236b5d2473fe9396d"
+    },
+    "e3/e3_a_total_cross_shard_ratio/figure_data.csv": {
+      "historical_sha256": "794b018c71a631fccd32e22cd09b81632ce4d40467efd91f3f6fbf017e7ab689",
+      "distributed_sha256": "794b018c71a631fccd32e22cd09b81632ce4d40467efd91f3f6fbf017e7ab689"
+    },
+    "e3/e3_a_total_cross_shard_ratio/validation.json": {
+      "historical_sha256": "e163bf0085fcd809ed9854499d8b17527fa45b45396cc8a4149d45505caddd75",
+      "distributed_sha256": "e163bf0085fcd809ed9854499d8b17527fa45b45396cc8a4149d45505caddd75"
+    },
+    "e3/e3_b_cross_shard_composition/figure_data.csv": {
+      "historical_sha256": "377a3953b753767e3c04c5a5eadb78276ee702f65b5dbfb7835e5de1d9affc47",
+      "distributed_sha256": "377a3953b753767e3c04c5a5eadb78276ee702f65b5dbfb7835e5de1d9affc47"
+    },
+    "e3/e3_b_cross_shard_composition/validation.json": {
+      "historical_sha256": "dbf59a0712e42cd6516e12a65fc5d946356ad202764e068bc7956f4cd1f3c60f",
+      "distributed_sha256": "dbf59a0712e42cd6516e12a65fc5d946356ad202764e068bc7956f4cd1f3c60f"
+    },
+    "e3/e3_c_gas_weighted_cross_shard_ratio/figure_data.csv": {
+      "historical_sha256": "a28858ddb93fa476ca78de3ab005c36df528d360778ed508c7205bace980043c",
+      "distributed_sha256": "a28858ddb93fa476ca78de3ab005c36df528d360778ed508c7205bace980043c"
+    },
+    "e3/e3_c_gas_weighted_cross_shard_ratio/validation.json": {
+      "historical_sha256": "fb498eb79d34085e5aaad585268a00042683f6b3a499ed786d2b0726e3e1adc9",
+      "distributed_sha256": "bcee894f6a38f95e04be869af8cf2a9821d47188cef6ac783f980bbdf99d2f85"
+    },
+    "e3/e3_d_extra_execution_gas/figure_data.csv": {
+      "historical_sha256": "f2524029db93ebe6c771c00e5eb1648761096c2a471ab55e5ebcbf3473be8ff0",
+      "distributed_sha256": "f2524029db93ebe6c771c00e5eb1648761096c2a471ab55e5ebcbf3473be8ff0"
+    },
+    "e3/e3_d_extra_execution_gas/validation.json": {
+      "historical_sha256": "b4fcfeeaef2f03df6ec990866f6a4df7afcf491be66637a531a40b95a4785bb9",
+      "distributed_sha256": "4560c809ceb53720cec34988f0141b41ef7ea8c7afbd96d5b87805c260ca7181"
+    }
+  }
+}

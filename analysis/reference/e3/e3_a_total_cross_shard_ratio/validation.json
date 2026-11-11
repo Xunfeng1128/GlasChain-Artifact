@@ -1,0 +1,23 @@
+{
+  "valid": true,
+  "runs": 16,
+  "independent_runs_per_method_and_setting": 1,
+  "completed_unique_per_run": 500000,
+  "completed_sources_sha256": "82319e18986fdc505809e30df618edffaa81788d69cd8e1c72c4526bdd811b0e",
+  "source": "outputs/e3/e3_supp_union_cross_shard_ratio/figure_data.csv",
+  "source_sha256": "6f09396deec1cd4578c828668e1f8167d70159077161b8c48642044c2b48eb17",
+  "source_validation": "outputs/e3/e3_supp_union_cross_shard_ratio/validation.json",
+  "source_validation_sha256": "5e3ba26a838b7a1700011c961b8f58d8651c01531e3ec4d76ac893df24e5b17f",
+  "prepare_script_sha256": "de22dbc0e6f7d206dc4f9642f47dc2b726791cd95a149eb535a692c78e269404",
+  "figure_data_sha256": "794b018c71a631fccd32e22cd09b81632ce4d40467efd91f3f6fbf017e7ab689",
+  "total_cross": "unique source transactions with top-level cross-shard execution or any cross-shard internal call",
+  "top_only": "total_cross minus call_cross",
+  "call_cross": "unique source transactions with at least one cross-shard internal call, including those that also cross at top level",
+  "percent_denominator": "all 500000 finalized unique source transactions",
+  "checks": [
+    "validated source table hash matches",
+    "all 16 rows are unique, use the same cohort, and match one r01 per method and setting",
+    "all source ratios match source counts divided by 500000",
+    "top_only plus call_cross equals total_cross in every row"
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "source": "glas_freight_25755293_5m_chronological_mixed",
+  "source_sha256": {
+    "transactions.csv": "b2c44f98a35d7b24416abb35fc1b1102ed27bdbc9757651545420e430e64664a",
+    "contract_calls.csv": "ff8441b7966c599e8eb5a35861da42a31d792826fc5a00ef8a44c77bb5fbf09a"
+  },
+  "first_source_position": 1000001,
+  "last_source_position": 4000000,
+  "boundary_block_and_txindex": [
+    [
+      25757553,
+      60
+    ],
+    [
+      25766189,
+      77
+    ]
+  ],
+  "files": {
+    "transactions.csv": {
+      "data_rows": 3000000,
+      "sha256": "0bb7125e6776b8a2e66da951338a05bea075b7bfd9d0017f816bdaea49665949",
+      "bytes": 852791912
+    },
+    "contract_calls.csv": {
+      "data_rows": 16043041,
+      "sha256": "d9dd96caeb98da7d36274489e3407e512942878eb9520aa138b251d5f9ebd92b",
+      "bytes": 4575175173
+    }
+  }
+}

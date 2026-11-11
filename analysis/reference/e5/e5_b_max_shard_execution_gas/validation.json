@@ -1,0 +1,44 @@
+{
+  "metric": "maximum cumulative execution Gas over shards in each run (LOCAL, RELAY1 and RELAY2)",
+  "plot_scale": 1000000000,
+  "independent_runs_per_setting": 1,
+  "completed_transactions_per_run": 500000,
+  "completed_sources_sha256": "82319e18986fdc505809e30df618edffaa81788d69cd8e1c72c4526bdd811b0e",
+  "observations": 16,
+  "source_shard_rows": 192,
+  "shard_source": "historical-analysis/outputs/e5/e5_a_shard_gas_distribution/figure_data.csv",
+  "shard_source_sha256": "af3160de2b9b8ce526826f05ccdb0ca09950d3d92f36d062b66e488c92bacc5a",
+  "peak_to_mean_source": "historical-analysis/outputs/e5/e5_supplement_peak_to_mean_shard_gas/figure_data.csv",
+  "peak_to_mean_supplement_sha256": "418dc1e3b547ed524af6596d28120b973dec0c5d54e19f24f95b32ac22dff585",
+  "figure_data_sha256": "3eb4ab8090ae1f36fe9fb31bd24f935fe708c0871d127df4b477df5975c5278b",
+  "checks": [
+    "all expected shard IDs included in every run",
+    "all 16 recomputed maxima and total Gas values match the validated E4-c source",
+    "peak-to-mean supplement is byte-identical to its source",
+    "executed Notebook without missing-glyph warnings",
+    "16 plotted heights verified against source data",
+    "SciPilot layout and visual review passed",
+    "PDF embeds Times New Roman, SVG is vector, PNG is 600 dpi",
+    "method fill colors match E4-a, E4-b, and E4-d"
+  ],
+  "figure": {
+    "size_inches": [
+      7.16,
+      3.15
+    ],
+    "png_dpi": 600,
+    "bars": 16,
+    "display_decimals": 2,
+    "palette": {
+      "GLAS": "#E78A7B",
+      "CLPA": "#76A8C9",
+      "Contribchain-P": "#69BBA6",
+      "Hash": "#F0E28A"
+    }
+  },
+  "outputs_sha256": {
+    "e5_b_max_shard_execution_gas.pdf": "894b6034605ea0a80a6a443f6b9b07fc622644f2933e91f9bb4eac96803e97a8",
+    "e5_b_max_shard_execution_gas.svg": "91847865e0488f89153b0258f3746e4845d7c9afd41b9ac55867ac08278a59d8",
+    "e5_b_max_shard_execution_gas.png": "5dddb3a707e02d135a0672b35a5c262a779269071e52be1ceaf1696c4aed8c5e"
+  }
+}

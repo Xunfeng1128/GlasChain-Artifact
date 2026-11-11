@@ -1,0 +1,278 @@
+diff --git a/params/global_config.go b/params/global_config.go
+index bdc54b5..98f0660 100644
+--- a/params/global_config.go
++++ b/params/global_config.go
+@@ -68,7 +68,8 @@ var (
+ 	UnifiedPackingOptimized = false // opt-in pool preview/commit simplification; legacy paths stay unchanged
+ 	UnifiedMetrics          = false // opt-in logical completion event log; requires UnifiedExecution
+ 	E2ObservationSeconds    = 0     // zero keeps the complete-workload guard
+-	FormalMapCheckpoint     = 0     // Optional E1 input position for an offline placement audit.
++	E2StopPolicy            = ""
++	FormalMapCheckpoint     = 0 // Optional E1 input position for an offline placement audit.
+ 	E2PrefixCount           = 0
+ 	E2PrefixFile            = ""
+ 	UnifiedTransactionsFile = ""
+@@ -142,6 +143,7 @@ type globalConfig struct {
+ 	UnifiedPackingOptimized            bool     `json:"UnifiedPackingOptimized"`
+ 	UnifiedMetrics                     bool     `json:"UnifiedMetrics"`
+ 	E2ObservationSeconds               int      `json:"E2ObservationSeconds"`
++	E2StopPolicy                       string   `json:"E2StopPolicy"`
+ 	ExperimentEpochCount               int      `json:"ExperimentEpochCount"`
+ 	ExperimentBlocksPerEpoch           int      `json:"ExperimentBlocksPerEpoch"`
+ 	E2PrefixCount                      int      `json:"E2PrefixCount"`
+@@ -258,6 +260,7 @@ func ReadConfigFile() {
+ 	FormalMapCheckpoint = config.FormalMapCheckpoint
+ 	ExperimentEpochCount, ExperimentBlocksPerEpoch = config.ExperimentEpochCount, config.ExperimentBlocksPerEpoch
+ 	E2ObservationSeconds, E2PrefixCount, E2PrefixFile = config.E2ObservationSeconds, config.E2PrefixCount, config.E2PrefixFile
++	E2StopPolicy = config.E2StopPolicy
+ 	UnifiedTransactionsFile = strings.TrimSpace(config.UnifiedTransactionsFile)
+ 	UnifiedCallsFile = strings.TrimSpace(config.UnifiedCallsFile)
+ 	UnifiedCrossCallGas = 5000
+diff --git a/params/unified_execution.go b/params/unified_execution.go
+index 2169771..e831fb2 100644
+--- a/params/unified_execution.go
++++ b/params/unified_execution.go
+@@ -11,9 +11,22 @@ func GLASPendingFormalE2Enabled() bool {
+ 	return GLASPendingFormalRunEnabled() && E2ObservationSeconds > 0
+ }
+ 
++// BaselineFixedE2Enabled selects the archived fixed-window baseline policy.
++func BaselineFixedE2Enabled() bool {
++	switch ConsensusMethod {
++	case 1, 3, 9:
++		return E2StopPolicy == "fixed_window"
++	default:
++		return false
++	}
++}
++
+ // ValidateUnifiedExecutionConfig is opt-in: configurations without
+ // UnifiedExecution retain their legacy dataset and execution behavior.
+ func ValidateUnifiedExecutionConfig() error {
++	if E2StopPolicy != "" && (!BaselineFixedE2Enabled() || E2ObservationSeconds <= 0) {
++		return fmt.Errorf("E2StopPolicy requires fixed_window, a supported baseline, and a positive duration")
++	}
+ 	if UnifiedPackingOptimized && !UnifiedExecution {
+ 		return fmt.Errorf("UnifiedPackingOptimized requires unified shared execution")
+ 	}
+@@ -37,7 +50,7 @@ func ValidateUnifiedExecutionConfig() error {
+ 			return fmt.Errorf("E2 observation requires UnifiedMetrics and UnifiedExecution")
+ 		}
+ 		validDuration := E2ObservationSeconds > 0 && int64(E2ObservationSeconds) <= math.MaxInt64/int64(time.Second)
+-		if GLASPendingFormalRunEnabled() {
++		if GLASPendingFormalRunEnabled() || BaselineFixedE2Enabled() {
+ 			if !validDuration || E2PrefixCount != 0 || E2PrefixFile != "" {
+ 				return fmt.Errorf("formal GLAS E2 requires a positive E2ObservationSeconds and no input prefix")
+ 			}
+diff --git a/scripts/run_experiments.py b/scripts/run_experiments.py
+index d8c12bd..4c83e39 100644
+--- a/scripts/run_experiments.py
++++ b/scripts/run_experiments.py
+@@ -157,15 +157,21 @@ def ip_addresses(table, shards, nodes):
+ 
+ 
+ 
++def legacy_baseline_fixed_e2(cfg):
++    return cfg.get('E2StopPolicy') == 'fixed_window' and cfg.get('ConsensusMethod') in (1, 3, 9)
++
++
+ def fixed_e2(cfg):
+     seconds = cfg.get('E2ObservationSeconds', 0)
+-    return formal_glas_enabled(cfg) and type(seconds) is int and seconds > 0
++    return legacy_baseline_fixed_e2(cfg) or (formal_glas_enabled(cfg) and type(seconds) is int and seconds > 0)
+ 
+ 
+ def e2_policy(cfg, run):
+     windows = run.get('e2_windows_seconds', [])
+     prefixes = run.get('e2_prefix_counts', [])
+     duration, count = cfg.get('E2ObservationSeconds', 0), cfg.get('E2PrefixCount', 0)
++    if cfg.get('E2StopPolicy') and (not legacy_baseline_fixed_e2(cfg) or windows != [600, 960]):
++        raise RunnerError('Archived baseline E2 uses a 960-second observation with 600/960-second TPS windows')
+     if not any((duration, count, windows, prefixes, cfg.get('E2PrefixFile'))):
+         return
+     if fixed_e2(cfg):
+@@ -296,7 +302,7 @@ def print_plan(jobs):
+     if any(j['config'].get('E2PrefixCount') for j in jobs):
+         print('E2：固定窗口和固定哈希样本共用一次运行；覆盖最长窗口且最大前缀全部最终确认后正常收尾。')
+     if any(fixed_e2(j['config']) for j in jobs):
+-        print('新版 GLAS E2：从首次派发开始计时，到固定截止时刻停止观测并统计。')
++        print('Fixed-window E2 begins cooperative shutdown at the observation cutoff.')
+     for cid, js in grouped.items():
+         c = js[0]['condition']
+         repeats = ','.join(str(j['run']['repeat']) for j in js)
+@@ -364,10 +370,13 @@ def e2_passed(job):
+     evidence = read_json(out / 'analysis/e2_validation.json')
+     if fixed_e2(job['config']):
+         windows = job['run']['e2_windows_seconds']
++        coverage = meta.get('observed_duration_ns', 0)
++        cutoff = windows[-1] * 10**9
++        covered = coverage >= cutoff if legacy_baseline_fixed_e2(job['config']) else coverage == cutoff
+         if (meta.get('status') != 'closed' or meta.get('completion_scope') != 'e2'
+                 or meta.get('e2_stop_policy') != 'fixed_window' or meta.get('e2_prefix_count')
+                 or meta.get('e2_prefix_sha256') or meta.get('e2_observation_seconds') != windows[-1]
+-                or meta.get('observed_duration_ns') != windows[-1] * 10**9
++                or not covered
+                 or evidence.get('valid_for_e2') is not True or evidence.get('completion_scope') != 'e2'
+                 or evidence.get('e2_stop_policy') != 'fixed_window' or evidence.get('windows_seconds') != windows
+                 or evidence.get('latency_policy') != latency_policy(windows)):
+diff --git a/scripts/unified_metrics/summarize_e2_window.py b/scripts/unified_metrics/summarize_e2_window.py
+index 7dc688c..42b0718 100644
+--- a/scripts/unified_metrics/summarize_e2_window.py
++++ b/scripts/unified_metrics/summarize_e2_window.py
+@@ -94,6 +94,10 @@ def latency_row(db, windows, policy):
+     return result
+ 
+ 
++def legacy_baseline_fixed_e2(meta):
++    return meta.get("config", {}).get("consensus_method") in (1, 3, 9)
++
++
+ def validate_metadata(meta, duration):
+     if (meta.get("schema_version") != 1 or meta.get("clock") != CLOCK
+             or meta.get("completion_scope") != "e2" or meta.get("e2_stop_policy") != "fixed_window"):
+@@ -102,7 +106,9 @@ def validate_metadata(meta, duration):
+         raise ledger.InvalidRun("E2 requires a normally closed recorder")
+     covered = ledger.integer(meta["observed_duration_ns"], "observed_duration_ns")
+     ledger.integer(meta["first_injection_unix_ns"], "first_injection_unix_ns", 1)
+-    if meta.get("e2_observation_seconds") != duration or covered != duration * ledger.NS:
++    cutoff = duration * ledger.NS
++    valid_coverage = covered >= cutoff if legacy_baseline_fixed_e2(meta) else covered == cutoff
++    if meta.get("e2_observation_seconds") != duration or not valid_coverage:
+         raise ledger.InvalidRun(f"recorder did not cover exactly the {duration}-second E2 observation")
+     if meta.get("e2_prefix_count") or meta.get("e2_prefix_sha256"):
+         raise ledger.InvalidRun("fixed-window E2 must not require a transaction prefix")
+@@ -161,7 +167,9 @@ def summarize_e2_window(run_dir, output_dir, windows=WINDOWS_SECONDS):
+             db = sqlite3.connect(tmp / "ledger.sqlite3")
+             try:
+                 ledger.initialize(db)
+-                raw, replays = ledger.ingest(db, run_dir / "events.csv", meta, issues, exclude_cutoff=True)
++                raw, replays = ledger.ingest(
++                    db, run_dir / "events.csv", meta, issues, exclude_cutoff=not legacy_baseline_fixed_e2(meta)
++                )
+                 info.update(raw_rows=raw, duplicate_replay_rows=replays)
+                 info.update(validate_ledger(db, meta, issues))
+                 if issues.counts:
+diff --git a/supervisor/committee/committee_clpa.go b/supervisor/committee/committee_clpa.go
+index 12f4758..d53e2c9 100644
+--- a/supervisor/committee/committee_clpa.go
++++ b/supervisor/committee/committee_clpa.go
+@@ -206,7 +206,7 @@ func (ccm *CLPACommitteeModule) MsgSendingControl() {
+ 
+ 		// batch sending condition
+ 		if len(txlist) == int(ccm.batchDataNum) || ccm.nowDataNum == ccm.dataTotalNum {
+-			if params.E2PrefixCount > 0 && ccm.Ss.E2StopRequested() {
++			if (params.E2PrefixCount > 0 || params.BaselineFixedE2Enabled()) && ccm.Ss.E2StopRequested() {
+ 				return
+ 			}
+ 			// set the algorithm timer begins
+@@ -229,7 +229,7 @@ func (ccm *CLPACommitteeModule) MsgSendingControl() {
+ 		if params.ShardNum > 1 && ccm.reconfigurationDue() {
+ 			// Finish any round already entered, but do not begin a new
+ 			// migration after this E2 observation has closed.
+-			if params.E2PrefixCount > 0 && ccm.Ss.E2StopRequested() {
++			if (params.E2PrefixCount > 0 || params.BaselineFixedE2Enabled()) && ccm.Ss.E2StopRequested() {
+ 				return
+ 			}
+ 			clpaCnt++
+@@ -248,7 +248,7 @@ func (ccm *CLPACommitteeModule) MsgSendingControl() {
+ 		if !ccm.waitControlTick() {
+ 			return
+ 		}
+-		if params.E2PrefixCount > 0 && ccm.Ss.E2StopRequested() {
++		if (params.E2PrefixCount > 0 || params.BaselineFixedE2Enabled()) && ccm.Ss.E2StopRequested() {
+ 			return
+ 		}
+ 		if params.ShardNum > 1 && ccm.reconfigurationDue() {
+diff --git a/supervisor/committee/committee_relay.go b/supervisor/committee/committee_relay.go
+index 778add8..57d85c7 100644
+--- a/supervisor/committee/committee_relay.go
++++ b/supervisor/committee/committee_relay.go
+@@ -96,7 +96,7 @@ func (rthm *RelayCommitteeModule) MsgSendingControl() {
+ 
+ 		// re-shard condition, enough edges
+ 		if len(txlist) == int(rthm.batchDataNum) || rthm.nowDataNum == rthm.dataTotalNum {
+-			if params.E2PrefixCount > 0 && rthm.Ss.E2StopRequested() {
++			if (params.E2PrefixCount > 0 || params.BaselineFixedE2Enabled()) && rthm.Ss.E2StopRequested() {
+ 				return
+ 			}
+ 			rthm.txSending(txlist)
+diff --git a/supervisor/unified_metrics.go b/supervisor/unified_metrics.go
+index cd31e1a..7f23fdc 100644
+--- a/supervisor/unified_metrics.go
++++ b/supervisor/unified_metrics.go
+@@ -44,7 +44,7 @@ func (d *Supervisor) initUnifiedMetrics(method string) {
+ 		TransactionsFile: params.UnifiedTransactionsFile, CallsFile: params.UnifiedCallsFile,
+ 		ConfigPath: configPath, ConfigSHA256: fmt.Sprintf("%x", sha256.Sum256(data)),
+ 		E2ObservationSeconds: params.E2ObservationSeconds, E2PrefixCount: params.E2PrefixCount, E2PrefixFile: params.E2PrefixFile,
+-		E2FixedWindow: params.GLASPendingFormalE2Enabled(),
++		E2FixedWindow: params.GLASPendingFormalE2Enabled() || params.BaselineFixedE2Enabled(),
+ 	})
+ 	if err != nil {
+ 		log.Panicf("initialize unified metrics: %v", err)
+@@ -56,7 +56,7 @@ func (d *Supervisor) initUnifiedMetrics(method string) {
+ 		log.Panicf("committee %s has no unified injection observer", method)
+ 	}
+ 	d.unifiedRecorder = r
+-	if params.E2PrefixCount > 0 || params.GLASPendingFormalRunEnabled() {
++	if params.E2PrefixCount > 0 || params.GLASPendingFormalRunEnabled() || params.BaselineFixedE2Enabled() {
+ 		d.e2ReceiptFence = new(sync.RWMutex)
+ 	}
+ 	d.unifiedMetricsClosed = false
+@@ -157,8 +157,8 @@ func (d *Supervisor) finishUnifiedMetrics(runErr error, grace time.Duration) err
+ 			d.sl.Slog.Printf("Supervisor: unified completion verified expected=%d unique_injected=%d unique_completed=%d\n", progress.Expected, progress.Injected, progress.Completed)
+ 		}
+ 		closedAt := time.Now()
+-		if progress.E2FixedWindow {
+-			closedAt = d.unifiedRecorder.E2Deadline()
++		if deadline := d.unifiedRecorder.E2Deadline(); !deadline.IsZero() {
++			closedAt = deadline
+ 		}
+ 		closeErr = d.unifiedRecorder.Close(closedAt)
+ 	}
+@@ -209,6 +209,13 @@ func (g *completionStopGuard) observeE2(now time.Time, p unifiedmetrics.Completi
+ 		return false, fmt.Errorf("E2 input differs from declared workload: expected=%d injected=%d prefix_injected=%d/%d", p.Expected, p.Injected, p.E2PrefixInjected, p.E2PrefixCount)
+ 	}
+ 	if !reached {
++		if p.E2FixedWindow {
++			if senderDone && p.Injected != p.Expected {
++				return false, fmt.Errorf("E2 injection count mismatch: expected=%d unique_injected=%d", p.Expected, p.Injected)
++			}
++			// A fixed window can contain idle periods or outstanding work after EOF.
++			return false, nil
++		}
+ 		// Reuse EOF, missing receipt and bounded no-progress diagnostics.
+ 		// A finished workload alone does not satisfy the observation horizon.
+ 		_, err := g.observe(now, p, senderDone, idle)
+@@ -266,7 +273,7 @@ func (d *Supervisor) waitUnifiedCompletion(sender <-chan error, grace time.Durat
+ 		progress, e2Reached := d.unifiedRecorder.StopProgress(now)
+ 		var ready bool
+ 		var err error
+-		if progress.E2PrefixCount != 0 {
++		if progress.IsE2() {
+ 			ready, err = guard.observeE2(now, progress, e2Reached, senderDone, d.Ss.GapEnough(), d.Ss)
+ 		} else {
+ 			ready, err = guard.observe(now, progress, senderDone, d.Ss.GapEnough())
+diff --git a/supervisor/unifiedmetrics/e2.go b/supervisor/unifiedmetrics/e2.go
+index 25b920e..c0016d1 100644
+--- a/supervisor/unifiedmetrics/e2.go
++++ b/supervisor/unifiedmetrics/e2.go
+@@ -12,7 +12,7 @@ import (
+ 
+ func (r *Recorder) prepareE2(c RunConfig) error {
+ 	if c.E2FixedWindow {
+-		if c.ConsensusMethod != 12 ||
++		if (c.ConsensusMethod != 1 && c.ConsensusMethod != 3 && c.ConsensusMethod != 9 && c.ConsensusMethod != 12) ||
+ 			!validE2Duration(c.E2ObservationSeconds) || c.E2PrefixCount != 0 || c.E2PrefixFile != "" {
+ 			return fmt.Errorf("invalid formal GLAS fixed E2 observation")
+ 		}
+@@ -97,7 +97,9 @@ func (r *Recorder) E2Deadline() time.Time {
+ }
+ 
+ func (r *Recorder) e2Deadline() time.Time {
+-	if !r.progress.E2FixedWindow || r.start.IsZero() {
++	// Only GlasChain seals the recorder exactly at the observation boundary.
++	// The baseline stop guard uses the same duration, then records through cooperative shutdown.
++	if !r.progress.E2FixedWindow || r.meta.Config.ConsensusMethod != 12 || r.start.IsZero() {
+ 		return time.Time{}
+ 	}
+ 	return r.start.Add(time.Duration(r.meta.E2ObservationSeconds) * time.Second)

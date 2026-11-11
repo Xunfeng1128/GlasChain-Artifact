@@ -1,0 +1,38 @@
+font.family: serif
+font.serif: Times New Roman
+font.size: 13.5
+mathtext.fontset: custom
+mathtext.rm: Times New Roman
+mathtext.it: Times New Roman:italic
+mathtext.bf: Times New Roman:bold
+mathtext.sf: Times New Roman
+axes.labelsize: 13.5
+axes.labelweight: bold
+axes.titlesize: 13.5
+axes.linewidth: 0.75
+axes.spines.top: True
+axes.spines.right: True
+axes.axisbelow: True
+axes.grid: False
+axes.grid.axis: y
+grid.color: 0.88
+grid.linewidth: 0.5
+xtick.labelsize: 12.2
+ytick.labelsize: 12.2
+xtick.direction: in
+ytick.direction: in
+xtick.major.size: 3
+ytick.major.size: 3
+xtick.minor.size: 1.8
+ytick.minor.size: 1.8
+xtick.major.width: 0.75
+ytick.major.width: 0.75
+legend.fontsize: 12.2
+hatch.linewidth: 0.65
+lines.linewidth: 1.45
+figure.dpi: 120
+savefig.dpi: 300
+pdf.fonttype: 42
+ps.fonttype: 42
+svg.fonttype: none
+axes.unicode_minus: False

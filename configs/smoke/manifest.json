@@ -1,0 +1,73 @@
+{
+  "bundle": "synthetic_smoke",
+  "conditions": [
+    {
+      "condition_id": "smoke_glas",
+      "consensus_method": 12,
+      "dataset_id": "synthetic_smoke",
+      "group": "E1_overall",
+      "inject_speed_tps": 120,
+      "method": "glas_pending",
+      "metric_bin_seconds": 3,
+      "nodes_per_shard": 4,
+      "observation_seconds": 3,
+      "required_config": {
+        "FormalMapCheckpoint": 240
+      },
+      "shards": 2,
+      "total_transactions": 480,
+      "used_in": [
+        "E1_overall",
+        "E3_drain"
+      ]
+    }
+  ],
+  "data_integrity_policy": {
+    "require_expected_file_sha256": true
+  },
+  "datasets": [
+    {
+      "dataset_id": "synthetic_smoke",
+      "files": {
+        "contract_calls.csv": {
+          "bytes": 58034,
+          "data_rows": 320,
+          "path": "fixtures/smoke/contract_calls.csv",
+          "sha256": "3ef923db4e7223304a9571157aa7dfbf205b3f142b55e9021529dd8624166077"
+        },
+        "transactions.csv": {
+          "bytes": 91569,
+          "data_rows": 480,
+          "path": "fixtures/smoke/transactions.csv",
+          "sha256": "2808430be7f7eacf99dcd91151fd34f3f33b72f2bca7577b363fdeaa4320da54"
+        }
+      }
+    }
+  ],
+  "runs": [
+    {
+      "condition_id": "smoke_glas",
+      "config_file": "glas.json",
+      "metric_bin_seconds": 3,
+      "observation_seconds": 3,
+      "output_root": "runs/smoke/smoke_glas/r01",
+      "repeat": 1,
+      "required_artifacts": [
+        "result/glas_pending_plans.jsonl",
+        "result/unified_metrics/reconfiguration.csv",
+        "result/e1_checkpoint.json",
+        "result/supervisor_measureOutput/Average_TPS.csv",
+        "result/pbft_shardNum=2/Shard02.csv",
+        "result/pbft_shardNum=2/Shard12.csv"
+      ],
+      "run_id": "smoke_glas_r01",
+      "shared_process_arguments": [
+        "-S",
+        "2",
+        "-N",
+        "4"
+      ]
+    }
+  ],
+  "schema_version": 1
+}

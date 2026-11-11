@@ -1,0 +1,423 @@
+{
+  "provenance": {
+    "source": "ContribChain-INFOCOM2025/louvain",
+    "sourceCommit": null,
+    "sourceSHA256": {
+      "louvain.go": "d9348f336f2b84044a425fc2d39c1c907ee24e2bcce984439e83db70e70a20d0",
+      "graph.go": "178c05ba346292824adb2aaf74ff3b5de9afc1a63d39a16c410e58772c751e43"
+    },
+    "sourceControlFlowSHA256": {
+      "louvain/partition_PLouvain.go": "94125c7a9ad335430ca5d484aa34c76803bc783b74459d1647aacbe8b3dad036",
+      "supervisor/committee/committee_PLouvain.go": "d79c3d9771754bb9bdebbc3139e974bd8b2bc31723fc4afa54e9d5371f2adb7f"
+    },
+    "flags": {
+      "secStageMoveNode": false,
+      "isDeterministic": true,
+      "isTxAllo": false,
+      "israndom": false
+    },
+    "procedure": "Executed the original source files in a standalone temporary Go module; only package declaration changed to main. Driver uses first-seen account IDs, ascending adjacency IDs, equal shard performance, Compute(true,true,false), CommToShard(beta), NodeMerge(placement,true,false). Each P-Louvain case was checked for 100 repeated stable outputs. The branch-distinction case includes a separately computed TxAllo result on the same graph; no project optimizer or system experiment was executed. See source_fixture_generator.go.txt."
+  },
+  "cases": [
+    {
+      "name": "single_edge_many_shards",
+      "shards": 8,
+      "beta": 2,
+      "maxIterations": 70,
+      "edges": [
+        [
+          "a",
+          "b",
+          3
+        ]
+      ],
+      "expectedPlacement": {
+        "a": 0,
+        "b": 0
+      },
+      "expectedCommunityCount": 1,
+      "expectedRefinementPasses": 1
+    },
+    {
+      "name": "disconnected_pairs",
+      "shards": 4,
+      "beta": 2,
+      "maxIterations": 70,
+      "edges": [
+        [
+          "a",
+          "b",
+          7
+        ],
+        [
+          "c",
+          "d",
+          9
+        ],
+        [
+          "e",
+          "f",
+          2
+        ]
+      ],
+      "expectedPlacement": {
+        "a": 0,
+        "b": 0,
+        "c": 1,
+        "d": 1,
+        "e": 2,
+        "f": 2
+      },
+      "expectedCommunityCount": 3,
+      "expectedRefinementPasses": 1
+    },
+    {
+      "name": "weighted_bridge",
+      "shards": 2,
+      "beta": 2,
+      "maxIterations": 70,
+      "edges": [
+        [
+          "a",
+          "b",
+          12
+        ],
+        [
+          "b",
+          "c",
+          10
+        ],
+        [
+          "a",
+          "c",
+          11
+        ],
+        [
+          "c",
+          "d",
+          1
+        ],
+        [
+          "d",
+          "e",
+          9
+        ],
+        [
+          "e",
+          "f",
+          8
+        ],
+        [
+          "d",
+          "f",
+          10
+        ]
+      ],
+      "expectedPlacement": {
+        "a": 0,
+        "b": 0,
+        "c": 0,
+        "d": 1,
+        "e": 1,
+        "f": 1
+      },
+      "expectedCommunityCount": 2,
+      "expectedRefinementPasses": 1
+    },
+    {
+      "name": "hub_no_refinement",
+      "shards": 3,
+      "beta": 2,
+      "maxIterations": 0,
+      "edges": [
+        [
+          "a",
+          "b",
+          4
+        ],
+        [
+          "a",
+          "c",
+          9
+        ],
+        [
+          "a",
+          "d",
+          3
+        ],
+        [
+          "a",
+          "e",
+          12
+        ],
+        [
+          "b",
+          "c",
+          1
+        ],
+        [
+          "d",
+          "e",
+          2
+        ],
+        [
+          "e",
+          "f",
+          7
+        ],
+        [
+          "f",
+          "g",
+          3
+        ],
+        [
+          "g",
+          "h",
+          6
+        ],
+        [
+          "d",
+          "h",
+          2
+        ]
+      ],
+      "expectedPlacement": {
+        "a": 0,
+        "b": 0,
+        "c": 0,
+        "d": 1,
+        "e": 2,
+        "f": 2,
+        "g": 1,
+        "h": 1
+      },
+      "expectedCommunityCount": 3,
+      "expectedRefinementPasses": 0
+    },
+    {
+      "name": "hub_refined",
+      "shards": 3,
+      "beta": 2,
+      "maxIterations": 70,
+      "edges": [
+        [
+          "a",
+          "b",
+          4
+        ],
+        [
+          "a",
+          "c",
+          9
+        ],
+        [
+          "a",
+          "d",
+          3
+        ],
+        [
+          "a",
+          "e",
+          12
+        ],
+        [
+          "b",
+          "c",
+          1
+        ],
+        [
+          "d",
+          "e",
+          2
+        ],
+        [
+          "e",
+          "f",
+          7
+        ],
+        [
+          "f",
+          "g",
+          3
+        ],
+        [
+          "g",
+          "h",
+          6
+        ],
+        [
+          "d",
+          "h",
+          2
+        ]
+      ],
+      "expectedPlacement": {
+        "a": 0,
+        "b": 0,
+        "c": 0,
+        "d": 1,
+        "e": 2,
+        "f": 2,
+        "g": 1,
+        "h": 1
+      },
+      "expectedCommunityCount": 3,
+      "expectedRefinementPasses": 1
+    },
+    {
+      "name": "zero_cross_penalty",
+      "shards": 3,
+      "beta": 0,
+      "maxIterations": 70,
+      "edges": [
+        [
+          "a",
+          "b",
+          4
+        ],
+        [
+          "a",
+          "c",
+          9
+        ],
+        [
+          "a",
+          "d",
+          3
+        ],
+        [
+          "a",
+          "e",
+          12
+        ],
+        [
+          "b",
+          "c",
+          1
+        ],
+        [
+          "d",
+          "e",
+          2
+        ],
+        [
+          "e",
+          "f",
+          7
+        ],
+        [
+          "f",
+          "g",
+          3
+        ],
+        [
+          "g",
+          "h",
+          6
+        ],
+        [
+          "d",
+          "h",
+          2
+        ]
+      ],
+      "expectedPlacement": {
+        "a": 1,
+        "b": 0,
+        "c": 0,
+        "d": 2,
+        "e": 2,
+        "f": 2,
+        "g": 1,
+        "h": 1
+      },
+      "expectedCommunityCount": 3,
+      "expectedRefinementPasses": 2
+    },
+    {
+      "name": "source_branch_distinction_3",
+      "shards": 3,
+      "beta": 2,
+      "maxIterations": 70,
+      "edges": [
+        [
+          "v0",
+          "v1",
+          10
+        ],
+        [
+          "v0",
+          "v4",
+          11
+        ],
+        [
+          "v0",
+          "v6",
+          11
+        ],
+        [
+          "v1",
+          "v2",
+          12
+        ],
+        [
+          "v1",
+          "v4",
+          9
+        ],
+        [
+          "v2",
+          "v3",
+          9
+        ],
+        [
+          "v2",
+          "v4",
+          7
+        ],
+        [
+          "v3",
+          "v4",
+          12
+        ],
+        [
+          "v4",
+          "v5",
+          5
+        ],
+        [
+          "v4",
+          "v6",
+          18
+        ],
+        [
+          "v5",
+          "v6",
+          16
+        ]
+      ],
+      "expectedPlacement": {
+        "v0": 1,
+        "v1": 0,
+        "v2": 0,
+        "v3": 0,
+        "v4": 0,
+        "v5": 1,
+        "v6": 1
+      },
+      "expectedCommunityCount": 2,
+      "expectedRefinementPasses": 1,
+      "expectedTxAlloPlacement": {
+        "v0": 0,
+        "v1": 1,
+        "v2": 1,
+        "v3": 1,
+        "v4": 0,
+        "v5": 0,
+        "v6": 0
+      },
+      "expectedTxAlloCommunityCount": 2,
+      "expectedTxAlloRefinementPasses": 1
+    }
+  ]
+}

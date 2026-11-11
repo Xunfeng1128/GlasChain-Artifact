@@ -1,0 +1,518 @@
+{
+  "bundle": "glaschain-paper-archived-e2-fixed",
+  "conditions": [
+    {
+      "condition_id": "e2_clpa_s32_r3000",
+      "consensus_method": 1,
+      "dataset_id": "icde_e2_1000001_4000000",
+      "group": "E2_system",
+      "inject_speed_tps": 3000,
+      "method": "clpa",
+      "metric_bin_seconds": 48,
+      "nodes_per_shard": 4,
+      "observation_seconds": 960,
+      "required_config": {
+        "Alpha": 0.05,
+        "Bandwidth": 100000000,
+        "Beta": 0.5,
+        "BlockCapacityMode": "gas",
+        "BlockGasLimit": 30000000,
+        "BlockSize": 2000,
+        "Block_Interval": 8000,
+        "BlocksizeInBytes": 200000,
+        "BrokerFilePath": "./broker/broker_only_from",
+        "BrokerNum": 100,
+        "CLPAReconfigurationProfile": "install_clock",
+        "CLPAReconfigurationScheduler": "poll",
+        "CLPAWeightMode": "tx",
+        "CLPAWeightPenalty": 0.5,
+        "ConsensusMethod": 1,
+        "DatasetFile": "./datasets/icde_e2_1000001_4000000/transactions.csv",
+        "Delay": -1,
+        "E2ObservationSeconds": 960,
+        "E2PrefixCount": 0,
+        "E2StopPolicy": "fixed_window",
+        "EnableGasCostModel": false,
+        "FixedPerTxMs": 0,
+        "GasSlopeMsPerGas": 3e-05,
+        "InjectSpeed": 3000,
+        "JitterRange": -1,
+        "Lambda1": 1.0,
+        "Lambda2": 1.0,
+        "PbftViewChangeTimeOut": 30000,
+        "ReconfigTimeGap": 48,
+        "RelayWithMerkleProof": 0,
+        "StopSignalMode": "per_shard",
+        "TotalDataSize": 3000000,
+        "TxBatchSize": 3000,
+        "UnifiedCallsFile": "./datasets/icde_e2_1000001_4000000/contract_calls.csv",
+        "UnifiedCrossCallGas": 3000,
+        "UnifiedExecution": true,
+        "UnifiedMetrics": true,
+        "UnifiedPackingOptimized": true,
+        "UnifiedTransactionsFile": "./datasets/icde_e2_1000001_4000000/transactions.csv",
+        "UseBlocksizeInBytes": 0
+      },
+      "shards": 32,
+      "total_transactions": 3000000,
+      "used_in": [
+        "E2_system"
+      ]
+    },
+    {
+      "condition_id": "e2_clpa_s8_r1500",
+      "consensus_method": 1,
+      "dataset_id": "icde_e2_1000001_4000000",
+      "group": "E2_system",
+      "inject_speed_tps": 1500,
+      "method": "clpa",
+      "metric_bin_seconds": 48,
+      "nodes_per_shard": 4,
+      "observation_seconds": 960,
+      "required_config": {
+        "Alpha": 0.05,
+        "Bandwidth": 100000000,
+        "Beta": 0.5,
+        "BlockCapacityMode": "gas",
+        "BlockGasLimit": 30000000,
+        "BlockSize": 2000,
+        "Block_Interval": 8000,
+        "BlocksizeInBytes": 200000,
+        "BrokerFilePath": "./broker/broker_only_from",
+        "BrokerNum": 100,
+        "CLPAReconfigurationProfile": "install_clock",
+        "CLPAReconfigurationScheduler": "poll",
+        "CLPAWeightMode": "tx",
+        "CLPAWeightPenalty": 0.5,
+        "ConsensusMethod": 1,
+        "DatasetFile": "./datasets/icde_e2_1000001_4000000/transactions.csv",
+        "Delay": -1,
+        "E2ObservationSeconds": 960,
+        "E2PrefixCount": 0,
+        "E2StopPolicy": "fixed_window",
+        "EnableGasCostModel": false,
+        "FixedPerTxMs": 0,
+        "GasSlopeMsPerGas": 3e-05,
+        "InjectSpeed": 1500,
+        "JitterRange": -1,
+        "Lambda1": 1.0,
+        "Lambda2": 1.0,
+        "PbftViewChangeTimeOut": 30000,
+        "ReconfigTimeGap": 48,
+        "RelayWithMerkleProof": 0,
+        "StopSignalMode": "per_shard",
+        "TotalDataSize": 3000000,
+        "TxBatchSize": 1500,
+        "UnifiedCallsFile": "./datasets/icde_e2_1000001_4000000/contract_calls.csv",
+        "UnifiedCrossCallGas": 3000,
+        "UnifiedExecution": true,
+        "UnifiedMetrics": true,
+        "UnifiedPackingOptimized": true,
+        "UnifiedTransactionsFile": "./datasets/icde_e2_1000001_4000000/transactions.csv",
+        "UseBlocksizeInBytes": 0
+      },
+      "shards": 8,
+      "total_transactions": 3000000,
+      "used_in": [
+        "E2_system"
+      ]
+    },
+    {
+      "condition_id": "e2_hash_s8_r1500",
+      "consensus_method": 3,
+      "dataset_id": "icde_e2_1000001_4000000",
+      "group": "E2_system",
+      "inject_speed_tps": 1500,
+      "method": "hash",
+      "metric_bin_seconds": 48,
+      "nodes_per_shard": 4,
+      "observation_seconds": 960,
+      "required_config": {
+        "Alpha": 0.05,
+        "Bandwidth": 100000000,
+        "Beta": 0.5,
+        "BlockCapacityMode": "gas",
+        "BlockGasLimit": 30000000,
+        "BlockSize": 2000,
+        "Block_Interval": 8000,
+        "BlocksizeInBytes": 200000,
+        "BrokerFilePath": "./broker/broker_only_from",
+        "BrokerNum": 100,
+        "CLPAWeightMode": "tx",
+        "CLPAWeightPenalty": 0.5,
+        "ConsensusMethod": 3,
+        "DatasetFile": "./datasets/icde_e2_1000001_4000000/transactions.csv",
+        "Delay": -1,
+        "E2ObservationSeconds": 960,
+        "E2PrefixCount": 0,
+        "E2StopPolicy": "fixed_window",
+        "EnableGasCostModel": false,
+        "FixedPerTxMs": 0,
+        "GasSlopeMsPerGas": 3e-05,
+        "InjectSpeed": 1500,
+        "JitterRange": -1,
+        "Lambda1": 1.0,
+        "Lambda2": 1.0,
+        "PbftViewChangeTimeOut": 30000,
+        "ReconfigTimeGap": 48,
+        "RelayWithMerkleProof": 0,
+        "StopSignalMode": "per_shard",
+        "TotalDataSize": 3000000,
+        "TxBatchSize": 1500,
+        "UnifiedCallsFile": "./datasets/icde_e2_1000001_4000000/contract_calls.csv",
+        "UnifiedCrossCallGas": 3000,
+        "UnifiedExecution": true,
+        "UnifiedMetrics": true,
+        "UnifiedPackingOptimized": true,
+        "UnifiedTransactionsFile": "./datasets/icde_e2_1000001_4000000/transactions.csv",
+        "UseBlocksizeInBytes": 0
+      },
+      "shards": 8,
+      "total_transactions": 3000000,
+      "used_in": [
+        "E2_system"
+      ]
+    },
+    {
+      "condition_id": "e2_plouvain_s32_r3000",
+      "consensus_method": 9,
+      "dataset_id": "icde_e2_1000001_4000000",
+      "group": "E2_system",
+      "inject_speed_tps": 3000,
+      "method": "plouvain",
+      "metric_bin_seconds": 48,
+      "nodes_per_shard": 4,
+      "observation_seconds": 960,
+      "required_config": {
+        "Alpha": 0.05,
+        "Bandwidth": 100000000,
+        "Beta": 0.5,
+        "BlockCapacityMode": "gas",
+        "BlockGasLimit": 30000000,
+        "BlockSize": 2000,
+        "Block_Interval": 8000,
+        "BlocksizeInBytes": 200000,
+        "BrokerFilePath": "./broker/broker_only_from",
+        "BrokerNum": 100,
+        "CLPAReconfigurationProfile": "install_clock",
+        "CLPAReconfigurationScheduler": "poll",
+        "ConsensusMethod": 9,
+        "DatasetFile": "./datasets/icde_e2_1000001_4000000/transactions.csv",
+        "Delay": -1,
+        "E2ObservationSeconds": 960,
+        "E2PrefixCount": 0,
+        "E2StopPolicy": "fixed_window",
+        "EnableGasCostModel": false,
+        "FixedPerTxMs": 0,
+        "GasSlopeMsPerGas": 3e-05,
+        "InjectSpeed": 3000,
+        "JitterRange": -1,
+        "Lambda1": 1.0,
+        "Lambda2": 1.0,
+        "PLouvainContribBeta": 2.0,
+        "PLouvainContribMaxIterations": 70,
+        "PbftViewChangeTimeOut": 30000,
+        "ReconfigTimeGap": 48,
+        "RelayWithMerkleProof": 0,
+        "StopSignalMode": "per_shard",
+        "TotalDataSize": 3000000,
+        "TxBatchSize": 3000,
+        "UnifiedCallsFile": "./datasets/icde_e2_1000001_4000000/contract_calls.csv",
+        "UnifiedCrossCallGas": 3000,
+        "UnifiedExecution": true,
+        "UnifiedMetrics": true,
+        "UnifiedPackingOptimized": true,
+        "UnifiedTransactionsFile": "./datasets/icde_e2_1000001_4000000/transactions.csv",
+        "UseBlocksizeInBytes": 0
+      },
+      "shards": 32,
+      "total_transactions": 3000000,
+      "used_in": [
+        "E2_system"
+      ]
+    },
+    {
+      "condition_id": "e2_plouvain_s4_r1000",
+      "consensus_method": 9,
+      "dataset_id": "icde_e2_1000001_4000000",
+      "group": "E2_system",
+      "inject_speed_tps": 1000,
+      "method": "plouvain",
+      "metric_bin_seconds": 48,
+      "nodes_per_shard": 4,
+      "observation_seconds": 960,
+      "required_config": {
+        "Alpha": 0.05,
+        "Bandwidth": 100000000,
+        "Beta": 0.5,
+        "BlockCapacityMode": "gas",
+        "BlockGasLimit": 30000000,
+        "BlockSize": 2000,
+        "Block_Interval": 8000,
+        "BlocksizeInBytes": 200000,
+        "BrokerFilePath": "./broker/broker_only_from",
+        "BrokerNum": 100,
+        "CLPAReconfigurationProfile": "install_clock",
+        "CLPAReconfigurationScheduler": "poll",
+        "ConsensusMethod": 9,
+        "DatasetFile": "./datasets/icde_e2_1000001_4000000/transactions.csv",
+        "Delay": -1,
+        "E2ObservationSeconds": 960,
+        "E2PrefixCount": 0,
+        "E2StopPolicy": "fixed_window",
+        "EnableGasCostModel": false,
+        "FixedPerTxMs": 0,
+        "GasSlopeMsPerGas": 3e-05,
+        "InjectSpeed": 1000,
+        "JitterRange": -1,
+        "Lambda1": 1.0,
+        "Lambda2": 1.0,
+        "PLouvainContribBeta": 2.0,
+        "PLouvainContribMaxIterations": 70,
+        "PbftViewChangeTimeOut": 30000,
+        "ReconfigTimeGap": 48,
+        "RelayWithMerkleProof": 0,
+        "StopSignalMode": "per_shard",
+        "TotalDataSize": 3000000,
+        "TxBatchSize": 1000,
+        "UnifiedCallsFile": "./datasets/icde_e2_1000001_4000000/contract_calls.csv",
+        "UnifiedCrossCallGas": 3000,
+        "UnifiedExecution": true,
+        "UnifiedMetrics": true,
+        "UnifiedPackingOptimized": true,
+        "UnifiedTransactionsFile": "./datasets/icde_e2_1000001_4000000/transactions.csv",
+        "UseBlocksizeInBytes": 0
+      },
+      "shards": 4,
+      "total_transactions": 3000000,
+      "used_in": [
+        "E2_system"
+      ]
+    },
+    {
+      "condition_id": "e2_plouvain_s8_r1500",
+      "consensus_method": 9,
+      "dataset_id": "icde_e2_1000001_4000000",
+      "group": "E2_system",
+      "inject_speed_tps": 1500,
+      "method": "plouvain",
+      "metric_bin_seconds": 48,
+      "nodes_per_shard": 4,
+      "observation_seconds": 960,
+      "required_config": {
+        "Alpha": 0.05,
+        "Bandwidth": 100000000,
+        "Beta": 0.5,
+        "BlockCapacityMode": "gas",
+        "BlockGasLimit": 30000000,
+        "BlockSize": 2000,
+        "Block_Interval": 8000,
+        "BlocksizeInBytes": 200000,
+        "BrokerFilePath": "./broker/broker_only_from",
+        "BrokerNum": 100,
+        "CLPAReconfigurationProfile": "install_clock",
+        "CLPAReconfigurationScheduler": "poll",
+        "ConsensusMethod": 9,
+        "DatasetFile": "./datasets/icde_e2_1000001_4000000/transactions.csv",
+        "Delay": -1,
+        "E2ObservationSeconds": 960,
+        "E2PrefixCount": 0,
+        "E2StopPolicy": "fixed_window",
+        "EnableGasCostModel": false,
+        "FixedPerTxMs": 0,
+        "GasSlopeMsPerGas": 3e-05,
+        "InjectSpeed": 1500,
+        "JitterRange": -1,
+        "Lambda1": 1.0,
+        "Lambda2": 1.0,
+        "PLouvainContribBeta": 2.0,
+        "PLouvainContribMaxIterations": 70,
+        "PbftViewChangeTimeOut": 30000,
+        "ReconfigTimeGap": 48,
+        "RelayWithMerkleProof": 0,
+        "StopSignalMode": "per_shard",
+        "TotalDataSize": 3000000,
+        "TxBatchSize": 1500,
+        "UnifiedCallsFile": "./datasets/icde_e2_1000001_4000000/contract_calls.csv",
+        "UnifiedCrossCallGas": 3000,
+        "UnifiedExecution": true,
+        "UnifiedMetrics": true,
+        "UnifiedPackingOptimized": true,
+        "UnifiedTransactionsFile": "./datasets/icde_e2_1000001_4000000/transactions.csv",
+        "UseBlocksizeInBytes": 0
+      },
+      "shards": 8,
+      "total_transactions": 3000000,
+      "used_in": [
+        "E2_system"
+      ]
+    }
+  ],
+  "data_integrity_policy": {
+    "require_expected_file_sha256": true
+  },
+  "datasets": [
+    {
+      "dataset_id": "icde_e2_1000001_4000000",
+      "files": {
+        "contract_calls.csv": {
+          "bytes": 4575175173,
+          "data_rows": 16043041,
+          "path": "datasets/icde_e2_1000001_4000000/contract_calls.csv",
+          "sha256": "d9dd96caeb98da7d36274489e3407e512942878eb9520aa138b251d5f9ebd92b"
+        },
+        "transactions.csv": {
+          "bytes": 852791912,
+          "data_rows": 3000000,
+          "path": "datasets/icde_e2_1000001_4000000/transactions.csv",
+          "sha256": "0bb7125e6776b8a2e66da951338a05bea075b7bfd9d0017f816bdaea49665949"
+        }
+      },
+      "source_positions": [
+        1000001,
+        4000000
+      ]
+    }
+  ],
+  "runs": [
+    {
+      "condition_id": "e2_clpa_s32_r3000",
+      "config_file": "formal/e2/clpa/e2_clpa_s32_r3000/r01.json",
+      "e2_prefix_counts": [],
+      "e2_windows_seconds": [
+        600,
+        960
+      ],
+      "metric_bin_seconds": 48,
+      "observation_seconds": 960,
+      "output_root": "runs/e2/clpa/e2_clpa_s32_r3000/r01",
+      "repeat": 1,
+      "required_artifacts": [
+        "result/unified_metrics/reconfiguration.csv"
+      ],
+      "run_id": "e2_clpa_s32_r3000_r01",
+      "shared_process_arguments": [
+        "-S",
+        "32",
+        "-N",
+        "4"
+      ]
+    },
+    {
+      "condition_id": "e2_clpa_s8_r1500",
+      "config_file": "formal/e2/clpa/e2_clpa_s8_r1500/r01.json",
+      "e2_prefix_counts": [],
+      "e2_windows_seconds": [
+        600,
+        960
+      ],
+      "metric_bin_seconds": 48,
+      "observation_seconds": 960,
+      "output_root": "runs/e2/clpa/e2_clpa_s8_r1500/r01",
+      "repeat": 1,
+      "required_artifacts": [
+        "result/unified_metrics/reconfiguration.csv"
+      ],
+      "run_id": "e2_clpa_s8_r1500_r01",
+      "shared_process_arguments": [
+        "-S",
+        "8",
+        "-N",
+        "4"
+      ]
+    },
+    {
+      "condition_id": "e2_hash_s8_r1500",
+      "config_file": "formal/e2/hash/e2_hash_s8_r1500/r01.json",
+      "e2_prefix_counts": [],
+      "e2_windows_seconds": [
+        600,
+        960
+      ],
+      "metric_bin_seconds": 48,
+      "observation_seconds": 960,
+      "output_root": "runs/e2/hash/e2_hash_s8_r1500/r01",
+      "repeat": 1,
+      "required_artifacts": [
+        "result/unified_metrics/reconfiguration.csv"
+      ],
+      "run_id": "e2_hash_s8_r1500_r01",
+      "shared_process_arguments": [
+        "-S",
+        "8",
+        "-N",
+        "4"
+      ]
+    },
+    {
+      "condition_id": "e2_plouvain_s32_r3000",
+      "config_file": "formal/e2/plouvain/e2_plouvain_s32_r3000/r01.json",
+      "e2_prefix_counts": [],
+      "e2_windows_seconds": [
+        600,
+        960
+      ],
+      "metric_bin_seconds": 48,
+      "observation_seconds": 960,
+      "output_root": "runs/e2/plouvain/e2_plouvain_s32_r3000/r01",
+      "repeat": 1,
+      "required_artifacts": [
+        "result/unified_metrics/reconfiguration.csv"
+      ],
+      "run_id": "e2_plouvain_s32_r3000_r01",
+      "shared_process_arguments": [
+        "-S",
+        "32",
+        "-N",
+        "4"
+      ]
+    },
+    {
+      "condition_id": "e2_plouvain_s4_r1000",
+      "config_file": "formal/e2/plouvain/e2_plouvain_s4_r1000/r01.json",
+      "e2_prefix_counts": [],
+      "e2_windows_seconds": [
+        600,
+        960
+      ],
+      "metric_bin_seconds": 48,
+      "observation_seconds": 960,
+      "output_root": "runs/e2/plouvain/e2_plouvain_s4_r1000/r01",
+      "repeat": 1,
+      "required_artifacts": [
+        "result/unified_metrics/reconfiguration.csv"
+      ],
+      "run_id": "e2_plouvain_s4_r1000_r01",
+      "shared_process_arguments": [
+        "-S",
+        "4",
+        "-N",
+        "4"
+      ]
+    },
+    {
+      "condition_id": "e2_plouvain_s8_r1500",
+      "config_file": "formal/e2/plouvain/e2_plouvain_s8_r1500/r01.json",
+      "e2_prefix_counts": [],
+      "e2_windows_seconds": [
+        600,
+        960
+      ],
+      "metric_bin_seconds": 48,
+      "observation_seconds": 960,
+      "output_root": "runs/e2/plouvain/e2_plouvain_s8_r1500/r01",
+      "repeat": 1,
+      "required_artifacts": [
+        "result/unified_metrics/reconfiguration.csv"
+      ],
+      "run_id": "e2_plouvain_s8_r1500_r01",
+      "shared_process_arguments": [
+        "-S",
+        "8",
+        "-N",
+        "4"
+      ]
+    }
+  ],
+  "schema_version": 1
+}

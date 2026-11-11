@@ -1,0 +1,21 @@
+{
+  "valid": true,
+  "settings": 5,
+  "method_rows": 15,
+  "figure_data_sha256": "cd28803d30f20f2d95fcceb5952f77f5eddbaeabbd6bdbbe91c19146f289d06d",
+  "source_files_sha256": {
+    "historical-analysis/data/e2/throughput.csv": "b20092419d1172c2db1af67713d57da9f58b3f0d62f97786ef5e5ef29353ae2b",
+    "historical-analysis/data/e2/completed_mean_600s/e2b_completed_mean_600s.csv": "ef06aacb4fdd291d523828dd39b79cfef42fa5cb243d58a18e4747337e7229e5",
+    "historical-analysis/data/e2/three_way_fixed_size_latency_600s/three_way_fixed_size_latency.csv": "ae3914e2b292f35c0bf7f13c5e809a3e36ce2fef4050054fe1a20d0868b1fe7d",
+    "historical-analysis/data/e2/three_way_fixed_size_p95_600s/three_way_fixed_size_p95.csv": "d5d4106370723aba1b6ff3051ea5e048abce5a6ade725905505a6e828a8f69aa"
+  },
+  "checks": [
+    "verified source SHA-256",
+    "TPS and confirmation rate share verified 600 s counts",
+    "mean and P95 share the exact same transaction sample and source event SHA-256",
+    "all methods/settings have one independent run"
+  ],
+  "window": "[0,600 s) since first actual dispatch in each run",
+  "latency_selection": "first N hashes in original input order among the three-way final-confirmation intersection",
+  "p95_definition": "sorted per-transaction latency at one-based rank ceil(0.95 * sample size)"
+}

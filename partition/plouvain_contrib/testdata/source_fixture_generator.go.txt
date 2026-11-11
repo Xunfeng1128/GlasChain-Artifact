@@ -1,0 +1,49 @@
+package main
+
+import (
+ "encoding/json"
+ "fmt"
+ "os"
+ "reflect"
+ "sort"
+)
+
+type Case struct {
+ Name string `json:"name"`
+ Shards int `json:"shards"`
+ Beta float32 `json:"beta"`
+ MaxIterations int `json:"maxIterations"`
+ Edges [][]json.RawMessage `json:"edges"`
+ Placement map[string]uint64 `json:"expectedPlacement"`
+ Communities int `json:"expectedCommunityCount"`
+ Passes int `json:"expectedRefinementPasses"`
+ TxAlloPlacement map[string]uint64 `json:"expectedTxAlloPlacement,omitempty"`
+ TxAlloCommunities int `json:"expectedTxAlloCommunityCount,omitempty"`
+ TxAlloPasses int `json:"expectedTxAlloRefinementPasses,omitempty"`
+}
+func run(c Case, txallo bool) (map[string]uint64,int,int) {
+ labels:=[]string{}; ids:=map[string]int{}; counts:=map[[2]int]int{}
+ add:=func(s string) int { if n,ok:=ids[s];ok{return n}; n:=len(labels);ids[s]=n;labels=append(labels,s);return n }
+ for _,e:=range c.Edges { var a,b string; var n int; json.Unmarshal(e[0],&a);json.Unmarshal(e[1],&b);json.Unmarshal(e[2],&n); x,y:=add(a),add(b);if x>y{x,y=y,x};counts[[2]int{x,y}]+=n }
+ g:=Graph{make(Edges,len(labels)),make([]WeightType,len(labels))}
+ keys:=make([][2]int,0,len(counts));for k:=range counts{keys=append(keys,k)}
+ sort.Slice(keys,func(i,j int) bool{if keys[i][0]!=keys[j][0]{return keys[i][0]<keys[j][0]};return keys[i][1]<keys[j][1]})
+ for _,k:=range keys{g.AddDirectedEdge(k[0],k[1],WeightType(counts[k]));g.AddDirectedEdge(k[1],k[0],WeightType(counts[k]))}
+ p:=make([]float32,c.Shards);for i:=range p{p[i]=1}
+ l:=NewLouvain(g,p,false,c.Beta,c.Shards)
+ l.Compute(true,!txallo,txallo)
+ communities:=l.GetCommunitiesNum()
+ l.CommToShard(c.Beta); _,placement:=l.UpdateNodeShardIndex();passes:=0
+ for i:=0;i<c.MaxIterations;i++{var improved bool; improved,placement=l.NodeMerge(placement,!txallo,txallo);passes++;if !improved{break}}
+ result:=map[string]uint64{};for i,s:=range placement{result[labels[i]]=uint64(s)}
+ return result,communities,passes
+}
+func main(){
+ data,err:=os.ReadFile("cases.json");if err!=nil{panic(err)};var cases []Case;if err=json.Unmarshal(data,&cases);err!=nil{panic(err)}
+ stdout:=os.Stdout; null,err:=os.OpenFile(os.DevNull,os.O_WRONLY,0);if err!=nil{panic(err)};os.Stdout=null
+ for i:=range cases{c:=&cases[i]; c.Placement,c.Communities,c.Passes=run(*c,false);tp,tc,tr:=run(*c,true)
+ if !reflect.DeepEqual(c.Placement,tp)||c.Communities!=tc||c.Passes!=tr{c.TxAlloPlacement=tp;c.TxAlloCommunities=tc;c.TxAlloPasses=tr}
+ for rep:=0;rep<100;rep++{p,cn,r:=run(*c,false);if !reflect.DeepEqual(c.Placement,p)||c.Communities!=cn||c.Passes!=r{panic(fmt.Sprintf("unstable P-Louvain fixture %s",c.Name))}}
+ }
+ os.Stdout=stdout;out,err:=json.MarshalIndent(cases,"","  ");if err!=nil{panic(err)};fmt.Println(string(out))
+}

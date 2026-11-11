@@ -1,0 +1,212 @@
+{
+  "source": "historical-analysis/data/e4/e4_shard_execution_gas.csv",
+  "figure_data_sha256": "af3160de2b9b8ce526826f05ccdb0ca09950d3d92f36d062b66e488c92bacc5a",
+  "transfer_manifest": "historical-analysis/provenance/e4_transfer_manifest_20261109_v1.json",
+  "independent_runs_per_setting": 1,
+  "completed_transactions_per_run": 500000,
+  "observations": 192,
+  "metric": "sum of stage_gas for LOCAL, RELAY1 and RELAY2, by execution shard",
+  "plot_scale": 1000000000,
+  "whiskers": "most extreme shard values within 1.5 times the interquartile range",
+  "checks": [
+    "archive transfer hashes matched",
+    "all shard values matched source tables",
+    "each sum matched system Gas",
+    "all runs completed the same source transactions",
+    "layout passed SciPilot audit",
+    "13 hollow flier markers match the 1.5 IQR rule",
+    "both insets reuse main-axis box statistics with all whiskers in view",
+    "reference-style compact insets passed visual review without data occlusion",
+    "local zoom data reuse original 1.5 IQR statistics; main retains all 13 flier markers",
+    "executed notebook successfully; PNG 4296x1890 at 600 dpi; SVG vector; PDF Times New Roman embedded",
+    "figure_data.csv unchanged from prior version",
+    "lower inset layout passed SciPilot audit and visual review; no overlap with preceding Hash whiskers, boxes, or main GLAS observations"
+  ],
+  "runs": {
+    "e3_clpa_s16_r1000_n500000_r01": {
+      "shards": 16,
+      "inject_tps": 1000,
+      "total_execution_gas": 54206817524,
+      "completed_sources_sha256": "82319e18986fdc505809e30df618edffaa81788d69cd8e1c72c4526bdd811b0e",
+      "shard_workloads_sha256": "47d2e7fd43eb34c45e8bf02538aac206fd86b7159a82e67930c843d073562bd7"
+    },
+    "e3_clpa_s16_r2000_n500000_r01": {
+      "shards": 16,
+      "inject_tps": 2000,
+      "total_execution_gas": 55451402341,
+      "completed_sources_sha256": "82319e18986fdc505809e30df618edffaa81788d69cd8e1c72c4526bdd811b0e",
+      "shard_workloads_sha256": "9cc41c9db5cfcd8286016ca1a111667596804156c6ef468cb8cd2e854c946991"
+    },
+    "e3_clpa_s8_r1000_n500000_r01": {
+      "shards": 8,
+      "inject_tps": 1000,
+      "total_execution_gas": 53332682470,
+      "completed_sources_sha256": "82319e18986fdc505809e30df618edffaa81788d69cd8e1c72c4526bdd811b0e",
+      "shard_workloads_sha256": "c0fb886a72ed02164a27a56b1d360ff3b9db1b222a7538aff7e9efb4540f4252"
+    },
+    "e3_clpa_s8_r2000_n500000_r01": {
+      "shards": 8,
+      "inject_tps": 2000,
+      "total_execution_gas": 53812233669,
+      "completed_sources_sha256": "82319e18986fdc505809e30df618edffaa81788d69cd8e1c72c4526bdd811b0e",
+      "shard_workloads_sha256": "2e0264e6873b1bfd721aac9e21e4bcd44f1d04a6ae42a4ecc4906cf619992b35"
+    },
+    "e3_glas13_s16_r1000_n500000_r01": {
+      "shards": 16,
+      "inject_tps": 1000,
+      "total_execution_gas": 43886803559,
+      "completed_sources_sha256": "82319e18986fdc505809e30df618edffaa81788d69cd8e1c72c4526bdd811b0e",
+      "shard_workloads_sha256": "87955e5c7258db174ef6db35991fc5b0b7f102828e36514921b17a841f511621"
+    },
+    "e3_glas13_s16_r2000_n500000_r01": {
+      "shards": 16,
+      "inject_tps": 2000,
+      "total_execution_gas": 43891758568,
+      "completed_sources_sha256": "82319e18986fdc505809e30df618edffaa81788d69cd8e1c72c4526bdd811b0e",
+      "shard_workloads_sha256": "7fd0bc087764888b3b7157e16bae38b85e4197562801157eea2633009b97ef1d"
+    },
+    "e3_glas13_s8_r1000_n500000_r01": {
+      "shards": 8,
+      "inject_tps": 1000,
+      "total_execution_gas": 41220342006,
+      "completed_sources_sha256": "82319e18986fdc505809e30df618edffaa81788d69cd8e1c72c4526bdd811b0e",
+      "shard_workloads_sha256": "b2404e62ce34cdff562c088b3c65323fe852edafc617555ee7556342df3bbb22"
+    },
+    "e3_glas13_s8_r2000_n500000_r01": {
+      "shards": 8,
+      "inject_tps": 2000,
+      "total_execution_gas": 41318241264,
+      "completed_sources_sha256": "82319e18986fdc505809e30df618edffaa81788d69cd8e1c72c4526bdd811b0e",
+      "shard_workloads_sha256": "e1121babc8364c35f7dc704f32cb5532106f58fcccf60d13ea0f1ab0dc4789c6"
+    },
+    "e3_hash_s16_r1000_n500000_r01": {
+      "shards": 16,
+      "inject_tps": 1000,
+      "total_execution_gas": 75803836594,
+      "completed_sources_sha256": "82319e18986fdc505809e30df618edffaa81788d69cd8e1c72c4526bdd811b0e",
+      "shard_workloads_sha256": "a21bfa3b0004506068a7195a414bfe5a511c4517a5148c83ab92c3ac2231b24e"
+    },
+    "e3_hash_s16_r2000_n500000_r01": {
+      "shards": 16,
+      "inject_tps": 2000,
+      "total_execution_gas": 75803836594,
+      "completed_sources_sha256": "82319e18986fdc505809e30df618edffaa81788d69cd8e1c72c4526bdd811b0e",
+      "shard_workloads_sha256": "a21bfa3b0004506068a7195a414bfe5a511c4517a5148c83ab92c3ac2231b24e"
+    },
+    "e3_hash_s8_r1000_n500000_r01": {
+      "shards": 8,
+      "inject_tps": 1000,
+      "total_execution_gas": 72853840450,
+      "completed_sources_sha256": "82319e18986fdc505809e30df618edffaa81788d69cd8e1c72c4526bdd811b0e",
+      "shard_workloads_sha256": "e0be01dc18d02bcc1fee672bf0ba448157f06a544be0d473f6b09c8e3e5ebb6e"
+    },
+    "e3_hash_s8_r2000_n500000_r01": {
+      "shards": 8,
+      "inject_tps": 2000,
+      "total_execution_gas": 72853840450,
+      "completed_sources_sha256": "82319e18986fdc505809e30df618edffaa81788d69cd8e1c72c4526bdd811b0e",
+      "shard_workloads_sha256": "e0be01dc18d02bcc1fee672bf0ba448157f06a544be0d473f6b09c8e3e5ebb6e"
+    },
+    "e3_plouvain_s16_r1000_n500000_r01": {
+      "shards": 16,
+      "inject_tps": 1000,
+      "total_execution_gas": 58625440583,
+      "completed_sources_sha256": "82319e18986fdc505809e30df618edffaa81788d69cd8e1c72c4526bdd811b0e",
+      "shard_workloads_sha256": "51cfa8e728a99b2ccd75119d7f942ba997b2facc794753a6289375900dbc0a6b"
+    },
+    "e3_plouvain_s16_r2000_n500000_r01": {
+      "shards": 16,
+      "inject_tps": 2000,
+      "total_execution_gas": 59877506890,
+      "completed_sources_sha256": "82319e18986fdc505809e30df618edffaa81788d69cd8e1c72c4526bdd811b0e",
+      "shard_workloads_sha256": "a9cff6d103db9b55da30b31b2b4faa8290c64d77814dfd45062f0960e0a18661"
+    },
+    "e3_plouvain_s8_r1000_n500000_r01": {
+      "shards": 8,
+      "inject_tps": 1000,
+      "total_execution_gas": 59209090795,
+      "completed_sources_sha256": "82319e18986fdc505809e30df618edffaa81788d69cd8e1c72c4526bdd811b0e",
+      "shard_workloads_sha256": "b8dd8ebb2a0158a3708389b3acc925523b0c84977304f76ff5d942d531ac33f8"
+    },
+    "e3_plouvain_s8_r2000_n500000_r01": {
+      "shards": 8,
+      "inject_tps": 2000,
+      "total_execution_gas": 59347165356,
+      "completed_sources_sha256": "82319e18986fdc505809e30df618edffaa81788d69cd8e1c72c4526bdd811b0e",
+      "shard_workloads_sha256": "92b61bd431f73c02f038924c893e0e64381ed18c25fb9ad6e04bfe2df8d3a1fc"
+    }
+  },
+  "figure": {
+    "size_inches": [
+      7.16,
+      3.15
+    ],
+    "png_dpi": 600,
+    "boxes": 16,
+    "points": 0,
+    "palette": {
+      "GLAS": "#E78A7B",
+      "CLPA": "#76A8C9",
+      "Contribchain-P": "#69BBA6",
+      "Hash": "#F0E28A"
+    },
+    "show_fliers": true,
+    "flier_markers": 13,
+    "insets": [
+      {
+        "method": "glas",
+        "shards": 16,
+        "inject_tps": 1000,
+        "y_limits_billion_gas": [
+          2.55,
+          2.63
+        ],
+        "y_ticks_billion_gas": [
+          2.55,
+          2.59,
+          2.63
+        ],
+        "show_fliers": true,
+        "visible_flier_markers": 1,
+        "total_flier_markers_in_main": 3,
+        "x_tick_label": "GLAS",
+        "connector_lines": false,
+        "bounds_relative_to_glas_center_in_main_data_units": [
+          -0.49,
+          0.8,
+          0.37,
+          2.15
+        ]
+      },
+      {
+        "method": "glas",
+        "shards": 16,
+        "inject_tps": 2000,
+        "y_limits_billion_gas": [
+          2.1,
+          2.9
+        ],
+        "y_ticks_billion_gas": [
+          2.1,
+          2.5,
+          2.9
+        ],
+        "show_fliers": true,
+        "visible_flier_markers": 0,
+        "total_flier_markers_in_main": 3,
+        "x_tick_label": "GLAS",
+        "connector_lines": false,
+        "bounds_relative_to_glas_center_in_main_data_units": [
+          -0.49,
+          0.8,
+          0.37,
+          2.15
+        ]
+      }
+    ],
+    "inset_design": "smaller local zooms in blank space immediately left of corresponding GLAS boxes; label below; no connecting lines",
+    "group_spacing": 1.38,
+    "font": "Times New Roman; PDF embedded CID TrueType"
+  },
+  "updated_at": "2026-11-10T01:45:05+08:00"
+}

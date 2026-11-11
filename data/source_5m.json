@@ -1,0 +1,51 @@
+{
+  "name": "glas_freight_25755293_5m_chronological_mixed",
+  "generated_at_utc": "2026-10-18T16:59:04.235344Z",
+  "source_tables": [
+    "bigquery-public-data.goog_blockchain_ethereum_mainnet_us.transactions",
+    "bigquery-public-data.goog_blockchain_ethereum_mainnet_us.receipts",
+    "bigquery-public-data.goog_blockchain_ethereum_mainnet_us.blocks",
+    "bigquery-public-data.goog_blockchain_ethereum_mainnet_us.traces",
+    "bigquery-public-data.goog_blockchain_ethereum_mainnet_us.accounts"
+  ],
+  "source_block_range": {
+    "start": 25755293,
+    "end": 25775292
+  },
+  "selected_block_range": {
+    "start": 25755293,
+    "end": 25769799
+  },
+  "selected_timestamp_range": {
+    "start": 1786734803,
+    "end": 1786909475,
+    "start_utc": "2026-08-14T19:13:23Z",
+    "end_utc": "2026-08-16T19:44:35Z",
+    "start_beijing": "2026-08-15T03:13:23+08:00",
+    "end_beijing": "2026-08-17T03:44:35+08:00"
+  },
+  "files": {
+    "transactions.csv": {
+      "bytes": 1423403553,
+      "sha256": "b2c44f98a35d7b24416abb35fc1b1102ed27bdbc9757651545420e430e64664a",
+      "data_rows": 5000000
+    },
+    "contract_calls.csv": {
+      "bytes": 7583669554,
+      "sha256": "ff8441b7966c599e8eb5a35861da42a31d792826fc5a00ef8a44c77bb5fbf09a",
+      "data_rows": 26615575
+    }
+  },
+  "files_gzip_reference": {
+    "transactions.csv.gz": {
+      "bytes": 531150103,
+      "sha256": "a211c50239536a987d5a463eaa936a1faed530c2bc01432d3cafe230d48d1b53",
+      "data_rows": 5000000
+    },
+    "contract_calls.csv.gz": {
+      "bytes": 1244882003,
+      "sha256": "99599c339cb2cd9894cf436b8b957b007314646ea0aecedb4d5d57d7e1891be5",
+      "data_rows": 26615575
+    }
+  }
+}

@@ -1,0 +1,57 @@
+% UTF-8；使用 XeLaTeX 编译。
+% 插入论文时，可复制下面的 equation 环境；需要 amsmath、amssymb。
+% 中文说明需要论文模板支持中文（例如 ctex）。
+\documentclass[UTF8,fontset=fandol,12pt]{ctexart}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb}
+\pagestyle{empty}
+
+\begin{document}
+
+\subsection*{式(9)：账户划分优化问题}
+
+\begin{equation}
+\begin{aligned}
+\min_{x}\quad
+& J_{\lambda}(x)
+  = (1-\lambda)H(x) + \lambda\frac{C(x)}{D}
+\\[0.6em]
+\text{s.t.}\quad
+& \sum_{k=1}^{K} x_{vk} = 1,
+  \qquad \forall v\in V,
+\\[0.4em]
+& x_{vk}\in\{0,1\},
+  \qquad \forall v\in V,\ k=1,\ldots,K,
+\\[0.4em]
+& \mu(x,x^{0})\le m_{\max}
+  \qquad \text{（启用迁移数量限制时）}.
+\end{aligned}
+\tag{9}
+\label{eq:glas-account-partition}
+\end{equation}
+
+其中，$\lambda\in[0,1]$，移动账户数为：
+\begin{equation*}
+\mu(x,x^{0})
+= \sum_{v\in V}
+  \left(1-\sum_{k=1}^{K}x_{vk}x^{0}_{vk}\right).
+\end{equation*}
+
+\subsection*{式(14)：逐账户放置评分}
+
+\begin{equation}
+\begin{aligned}
+\operatorname{score}(v,k)
+&= \lambda\frac{A_{\mathrm{cost}}(v,k)}{D}
+\\[0.6em]
+&\quad -\frac{1-\lambda}{K}
+\left[
+  \left(\frac{\widehat{L}_{k}+\ell(v)}{BG}\right)^{\gamma}
+  -\left(\frac{\widehat{L}_{k}}{BG}\right)^{\gamma}
+\right].
+\end{aligned}
+\tag{14}
+\label{eq:glas-account-placement-score}
+\end{equation}
+
+\end{document}
