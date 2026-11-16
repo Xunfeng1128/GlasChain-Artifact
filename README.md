@@ -42,7 +42,7 @@ The output directory contains the six PDFs below, the corresponding SVG and PNG 
 
 ## Obtain the formal input and run experiments
 
-Use [the data instructions](data/README.md) to obtain and verify both CSVs before launching the formal matrix. All methods use ordered prefixes of the same 3,000,000 transactions. They occupy about 5.43 GB together. The trace spans Ethereum mainnet blocks 25,757,553 through 25,766,189, from transaction index 60 through index 77 inclusive at the respective endpoints. The call file contains 16,043,041 records, including 3,000,000 root calls and 13,043,041 internal calls. The manuscript's current count of 16,043,041 refers to all call records.
+Download the exact inputs from [Zenodo, DOI 10.5281/zenodo.24131169](https://doi.org/10.5281/zenodo.24131169) and follow [the data instructions](data/README.md) to unpack and verify both CSVs before launching the formal matrix. The files occupy about 950 MB compressed and 5.43 GB unpacked. All methods use ordered prefixes of the same 3,000,000 transactions. The trace spans Ethereum mainnet blocks 25,757,553 through 25,766,189, from transaction index 60 through index 77 inclusive at the respective endpoints. The call file contains 16,043,041 records, including 3,000,000 root calls and 13,043,041 internal calls. The manuscript's current count of 16,043,041 refers to all call records.
 
 ```sh
 python3 data/trace.py verify
@@ -91,7 +91,7 @@ The executable framework is adapted from BlockEmulator. The two ContribChain imp
 
 ## Availability and known gaps
 
-- An immutable public download URL or DOI for the exact 5.43 GB input pair is pending. The public BigQuery extraction recipes use live historical tables. The input hashes identify the exact archived bytes, and the selector can verify and reproduce them from the pinned five-million-transaction parent trace.
+- The exact formal CSV pair is publicly archived on [Zenodo](https://doi.org/10.5281/zenodo.24131169) under CC BY 4.0. The public BigQuery extraction recipes use live historical tables. The input hashes identify the archived bytes, and the selector can verify and reproduce them from the pinned five-million-transaction parent trace.
 - The archived formal results use five executable fingerprints. Exact source attribution is still open for the historical baseline executable identified by `82eb90172f94` and the GARET-FS executable identified by `f2f1fd1a51ac`. Their recorded parameters, artifact hashes and source evidence are in the run inventory. The shared emulator runs the recorded baseline settings. An isolated compatibility patch reproduces the recorded fixed-window E2 baseline stop policy.
 - The bundled reference tables support Figure 7–12 reproduction. The archived per-run event logs used to verify those tables are held separately. Local verification covered configuration and data preflight, a synthetic multi-process run, and figure reproduction.
 

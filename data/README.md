@@ -11,13 +11,23 @@ The call CSV includes 3,000,000 root calls and 13,043,041 internal calls. The CS
 
 ## Exact input
 
-Use an archived copy of the formal CSV pair if available. Preserve the CSV bytes and run the following from the repository root. An immutable public URL or DOI for the archived files is still pending.
+The exact formal inputs are publicly available under CC BY 4.0 in the [Zenodo dataset record](https://zenodo.org/records/24131169). Cite this version using [DOI 10.5281/zenodo.24131169](https://doi.org/10.5281/zenodo.24131169). The record includes [`transactions.csv.gz`](https://zenodo.org/api/records/24131169/files/transactions.csv.gz/content), [`contract_calls.csv.gz`](https://zenodo.org/api/records/24131169/files/contract_calls.csv.gz/content), and a [SHA-256 manifest for the uploaded files](https://zenodo.org/api/records/24131169/files/SHA256SUMS/content).
+
+From a fresh checkout, run these commands at the repository root. Allow about 6.4 GB for the compressed and unpacked files together. If the two plain CSVs are already installed, run the final verification command directly.
 
 ```sh
+trace_dir=datasets/icde_e2_1000001_4000000
+archive_url=https://zenodo.org/api/records/24131169/files
+mkdir -p "$trace_dir"
+curl --fail --location --retry 3 --output "$trace_dir/transactions.csv.gz" \
+  "$archive_url/transactions.csv.gz/content"
+curl --fail --location --retry 3 --output "$trace_dir/contract_calls.csv.gz" \
+  "$archive_url/contract_calls.csv.gz/content"
+gzip -dk "$trace_dir/transactions.csv.gz" "$trace_dir/contract_calls.csv.gz"
 python3 data/trace.py verify
 ```
 
-An archived copy of the original five-million-transaction trace also suffices. Use the source filenames shown above, either as plain CSV or as `.csv.gz`. The [source manifest](source_5m.json) pins the plain CSV bytes. The selector verifies the source and outputs before placing the formal pair at the default path.
+The verifier checks SHA-256, byte counts and data row counts against the pinned selection manifest. An archived copy of the original five-million-transaction trace also suffices. Use the source filenames shown above, either as plain CSV or as `.csv.gz`. The [source manifest](source_5m.json) pins the plain CSV bytes. The selector verifies the source and outputs before placing the formal pair at the default path.
 
 ```sh
 python3 data/trace.py select --source /path/to/trace-5m
